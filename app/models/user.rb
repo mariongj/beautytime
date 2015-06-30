@@ -23,6 +23,11 @@
 #  address                :string
 #  zipcode                :string
 #  city                   :string
+
+#  picture_file_name      :string
+#  picture_content_type   :string
+#  picture_file_size      :integer
+#  picture_updated_at     :datetime
 #
 # Indexes
 #
@@ -31,6 +36,16 @@
 #
 
 class User < ActiveRecord::Base
+  has_many :institutes
+  has_many :reviews
+  has_many :bookings
+
+  has_attached_file :picture,
+     styles: { medium: "300x300>", thumb: "100x100>" }
+
+   validates_attachment_content_type :picture,
+     content_type: /\Aimage\/.*\z/
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
