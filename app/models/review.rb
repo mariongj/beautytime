@@ -21,4 +21,6 @@ class Review < ActiveRecord::Base
   belongs_to :user
   belongs_to :booking
   belongs_to :institute
+
+  validates :rate, presence:true
 end

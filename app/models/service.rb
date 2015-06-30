@@ -21,4 +21,10 @@ class Service < ActiveRecord::Base
   belongs_to :institute
   has_many :bookings
   has_many :timetables
+
+  validates :title, presence:true
+  validates :duration, presence:true
+  validates :price, presence:true
+  validates :category, presence:true
+
 end

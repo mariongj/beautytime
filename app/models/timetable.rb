@@ -28,4 +28,19 @@
 
 class Timetable < ActiveRecord::Base
   belongs_to :service
+
+  validates :monday_start_time, presence:true
+  validates :monday_end_time, presence:true
+  validates :tuesday_start_time, presence:true
+  validates :tuesday_end_time, presence:true
+  validates :wednesday_start_time, presence:true
+  validates :wednesday_end_time, presence:true
+  validates :thursday_start_time, presence:true
+  validates :thursday_end_time, presence:true
+  validates :friday_start_time, presence:true
+  validates :friday_end_time, presence:true
+  validates :saturday_start_time, presence:true
+  validates :saturday_end_time, presence:true
+  validates :sunday_start_time, presence:true
+  validates :sunday_end_time, presence:true
 end

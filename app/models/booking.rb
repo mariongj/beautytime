@@ -23,4 +23,7 @@ class Booking < ActiveRecord::Base
   belongs_to :user
   belongs_to :service
   has_many :reviews
+
+  validates :start_datetime, presence:true
+  validates :end_datetime, presence:true
 end

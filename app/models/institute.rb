@@ -34,4 +34,26 @@ class Institute < ActiveRecord::Base
   belongs_to :user
   has_many :services
   has_many :reviews
+
+  validates :name, presence: true
+
+  has_attached_file :picture1,
+     styles: { medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment_content_type :picture1,
+   content_type: /\Aimage\/.*\z/
+
+  has_attached_file :picture2,
+    styles: { medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment_content_type :picture2,
+   content_type: /\Aimage\/.*\z/
+
+  has_attached_file :picture3,
+    styles: { medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment_content_type :picture3,
+   content_type: /\Aimage\/.*\z/
+
+
 end
