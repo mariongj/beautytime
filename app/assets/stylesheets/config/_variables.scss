@@ -2,10 +2,10 @@
  * Fonts
  * ------------------------------------- */
 // Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Montserrat:400,700|Raleway:300,400");
-$base-font: "Open Sans", "Helvetica", "sans-serif";
-$header-font: "Montserrat", "sans-serif";
-$navbar-font: 'Raleway', "sans-serif";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,600|Lora:400,700,400italic,700italic|Syncopate:400");
+$base-font: "Open Sans", "Lora", "sans-serif";
+$header-font: "Lora", "sans-serif";
+$navbar-font: 'Open Sans', "sans-serif";
 
 // Local fonts (uncomment following lines)
 // @font-face {
@@ -31,6 +31,7 @@ $yellow: #FDB631;
 $orange: #E67E22;
 $green: #32B796;
 $purple: #6452BD;
+$gold: #EECF6D;
 
 // Gray scale
 $gray-darker:  lighten(#000, 13.5%); // #222

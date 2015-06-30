@@ -1,10 +1,10 @@
 /* -------------------------------------
  * Colors & Fonts
  * ------------------------------------- */
-$navbar-color: $gray-light;
-$navbar-hover-color: $yellow;
+$navbar-color: black;
+$navbar-hover-color: $gold;
 $navbar-font-family: $navbar-font;
-$navbar-font-size: 14px;
+$navbar-font-size: 11px;
 $navbar-text-transform: capitalize;
 $navbar-font-weight: 300;
 $navbar-letter-spacing: 1.5px;
@@ -24,7 +24,7 @@ $navbar-border-bottom-color: $gray-lighter;
  * Navbar button
  * ------------------------------------- */
 $navbar-btn-height: 40px;
-$navbar-btn-bg: lightgrey;
+$navbar-btn-bg: black;
 $navbar-btn-color: white;
 $navbar-btn-horizontal-padding: 10px;
 $navbar-btn-radius: 2px;
@@ -86,11 +86,11 @@ $navbar-profile-border-width: 2px;
     border-radius: $navbar-btn-radius;
     margin-top: ($navbar-height + 2 * $navbar-vertical-padding - $navbar-btn-height) / 2;
     margin-bottom: ($navbar-height + 2 * $navbar-vertical-padding - $navbar-btn-height) / 2;
-    font-weight: bold;
+    font-weight: normal;
     background-color: $navbar-btn-bg;
-    font-size: 12px;
+    font-size: 8px;
     &:hover{
-      background-color: darken($navbar-btn-bg, 30%);
+      color: $navbar-hover-color;
     }
   }
 
@@ -116,6 +116,10 @@ $navbar-profile-border-width: 2px;
   .navbar-nav > li > .dropdown-menu{
     border-radius: 0;
     margin-top: 10px;
+    font-size: 11px;
+    &:hover{
+      color: $navbar-hover-color;
+    }
   }
 
   .navbar-nav > li > .dropdown-menu:before{
