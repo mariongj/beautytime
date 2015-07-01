@@ -7,6 +7,21 @@
   padding-top: 8em;
   padding-bottom: 8em;
 }
+
+.padding-small {
+  padding: 1%;
+}
+
+.padding-medium {
+  padding: 2.5%;
+}
+
+.center-vertically {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
 .bg-red {
   background: $red;
   color: white;

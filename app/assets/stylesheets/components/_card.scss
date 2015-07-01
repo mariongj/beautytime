@@ -1,0 +1,39 @@
+.institute {
+  background-color: white ;
+  margin: 2% 5%;
+  border-radius: 1px;
+  border-width: thin;
+  // box-shadow: 0 0 20px #E6E6E6 ;
+  &-header {
+    height: 120px;
+    background-size: cover;
+  }
+  &-body {
+    padding: 20px;
+    font-size: 13px;
+    text-align: left;
+    .description {
+      font-weight: 100;
+    }
+    h2 {
+      font-size: 17px;
+      font-family: $header-font;
+    }
+  }
+    .footer {
+      border-top: 1px solid $gray-lighter;
+      border-bottom: 1px solid $gray-lighter;
+      padding: 10px;
+      text-align: center;
+      text-transform: italic;
+      margin-top: 40px;
+      font-family: $header-font;
+      a {
+        color: black;
+        &:hover {
+          color: $gold;
+        }
+      }
+  }
+}
+
