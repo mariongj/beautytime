@@ -6,23 +6,28 @@
   <%# TODO %>
 <% end %>
 
-<div class="banner window-height">
-  <%= image_tag "logo_large.png" %>
-  <br>
-  <h1>Réservez vos rendez-vous beauté en ligne</h1>
-  <br>
-  <div class= "searchbar">
-    <div class= "container">
-      <div class= "row">
-        <%= form_tag('/home', method: :get, class: "form-inline") do %>
-          <%= select_tag "Service", options_for_select("Coiffure"), prompt: "Votre soin beauté", class: "form-control" %>
-          <%= select_tag "Lieu", options_for_select("Paris"), prompt: "Paris", class: "form-control" %>
-          <%= select_date Date.current, prompt: Date.current, class: "form-control" %>
-          <%= submit_tag "Rechercher", class: "btn btn-black" %>
-        <% end %>
+<div class="banner">
+  <div></div>
+    <%= image_tag "logo_large.png" %>
+    <br>
+    <br>
+    <br>
+    <h1>Réservez vos rendez-vous beauté en ligne</h1>
+    <br>
+    <br>
+    <br>
+    <div class= "searchbar">
+      <div class= "container">
+        <div class= "row">
+          <%= form_tag('/home', method: :get, class: "form-inline") do %>
+            <%= select_tag "Service", options_for_select("Coiffure"), prompt: "Votre soin beauté", class: "form-control" %>
+            <%= select_tag "Lieu", options_for_select(@cities), prompt: "Paris", class: "form-control" %>
+            <%= select_date Date.current, prompt: Date.current, class: "form-control" %>
+            <%= submit_tag "Rechercher", class: "btn btn-black" %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
 </div>
 
   <div class="features">
