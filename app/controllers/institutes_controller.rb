@@ -21,12 +21,17 @@ class InstitutesController < ApplicationController
   end
 
   def edit
+    @institute = Institute.find(params[:id])
   end
 
   def update
+    @institute.update(flat_params)
+    redirect_to institute_path(@institute)
   end
 
   def destroy
+    @institute.destroy
+    redirect_to my_flats_flats_path
   end
 
   private
