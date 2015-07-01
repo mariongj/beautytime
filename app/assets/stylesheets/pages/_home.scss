@@ -1,18 +1,12 @@
 .banner {
   background-image: image-url("banner.jpg");
   background-size: cover;
-  padding: 170px 0;
-  position: relative;
+  padding: 15% 0;
+  text-align: center;
+  color: black;
   h1 {
-    color: white;
-    font-size: 100px;
-    text-shadow: 1px 1px #26272C;
-  }
-
-  h2 {
-    color:white;
-    font-size: 25px;
-    font-weight: 100;
+    font-size: 50px;
+    font-family: Lora;
   }
 }
 
@@ -43,7 +37,6 @@
 .padded {
   position: relative;
 }
-
 
 .arrow-container {
   font-size: 70px;
