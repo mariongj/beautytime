@@ -1,10 +1,15 @@
 .banner {
   background-image: image-url("banner.jpg");
   background-size: cover;
-  padding: 5% 0;
+  padding: 5%;
   height:100vh;
   text-align: center;
   color: black;
+  .banner-content {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
   h1 {
     font-size: 30px;
     font-family: Lora;

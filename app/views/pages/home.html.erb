@@ -7,27 +7,22 @@
 <% end %>
 
 <div class="banner">
-  <div></div>
-    <%= image_tag "logo_large.png" %>
-    <br>
-    <br>
-    <br>
-    <h1>Réservez vos rendez-vous beauté en ligne</h1>
-    <br>
-    <br>
-    <br>
-    <div class= "searchbar">
+  <div class="banner-content">
+    <%= image_tag "logo_large.png", class: "padding-sides-15" %>
+    <h1 class= "padding-sides-15">Réservez vos rendez-vous beauté en ligne</h1>
+    <div class= "searchbar padding-sides-15">
       <div class= "container">
         <div class= "row">
           <%= form_tag('/home', method: :get, class: "form-inline") do %>
             <%= select_tag "Service", options_for_select("Coiffure"), prompt: "Votre soin beauté", class: "form-control" %>
-            <%= select_tag "Lieu", options_for_select(@cities), prompt: "Paris", class: "form-control" %>
+            <%= select_tag "Lieu", options_for_select("Paris"), prompt: "Paris", class: "form-control" %>
             <%= select_date Date.current, prompt: Date.current, class: "form-control" %>
-            <%= submit_tag "Rechercher", class: "btn btn-black" %>
+            <%= submit_tag "RECHERCHER", class: "btn btn-black" %>
           <% end %>
         </div>
       </div>
     </div>
+  </div>
 </div>
 
   <div class="features">
