@@ -1,0 +1,13 @@
+<div>
+  <%= simple_form_for [@user, @institute], html: { multipart: true } do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :address %>
+    <%= f.input :city %>
+    <%= f.input :zipcode %>
+    <%= f.input :picture1 %>
+    <%= f.input :picture2 %>
+    <%= f.input :picture3 %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>
