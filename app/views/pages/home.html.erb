@@ -13,10 +13,12 @@
     <div class="searchbar padding-medium">
       <div class="container">
         <div class="row">
-          <%= form_tag('/home', method: :get, class: "form-inline") do %>
-            <%= select_tag "Service", options_for_select("Coiffure"), prompt: "Votre soin beauté", class: "form-control" %>
-            <%= select_tag "Lieu", options_for_select(@cities), prompt: "Paris", class: "form-control" %>
+          <%= form_tag(institutes_path, method: :get, class: "form-inline") do %>
+            <%= select_tag :category, options_for_select(@categories), prompt: "Votre soin beauté", class: "form-control" %>
             <%= select_date Date.current, {}, { prompt: Date.current, class: "form-control" } %>
+            <div id="city-picker">
+              <input class="typeahead" type="text" placeholder="Ville" style="text-align: center" class="form-control">
+            </div>
             <%= submit_tag "RECHERCHER", class: "btn btn-black" %>
           <% end %>
         </div>
@@ -89,25 +91,62 @@
   </div>
 </div>
 
-  <div class="text-center padded" id ="news">
-    <div class="container">
-      <h2>Get news from RobertBnB</h2>
-      <p>Leave us your mail</p>
-      <form class="form-inline">
-        <input type="email" placeholder="bob@gmail.com" class="form-control">
-        <input type="submit" value="Subscribe" class="btn btn-primary">
-      </form>
-    </div>
-  </div>
-
-
-
-  <script>
-      window.sr = new scrollReveal();
-  </script>
-
-    </div>
+<div class="text-center padded" id ="news">
+  <div class="container">
+    <h2>Get news from RobertBnB</h2>
+    <p>Leave us your mail</p>
+    <form class="form-inline">
+      <input type="email" placeholder="bob@gmail.com" class="form-control">
+      <input type="submit" value="Subscribe" class="btn btn-primary">
+    </form>
   </div>
 </div>
+
+
+<script>
+    window.sr = new scrollReveal();
+</script>
+
+
+<%= content_for(:after_js) do %>
+  <script>
+  var substringMatcher = function(strs) {
+    return function findMatches(q, cb) {
+      var matches, substringRegex;
+
+      // an array that will be populated with substring matches
+      matches = [];
+
+      // regex used to determine if a string contains the substring `q`
+      substrRegex = new RegExp(q, 'i');
+
+      // iterate through the pool of strings and for any string that
+      // contains the substring `q`, add it to the `matches` array
+      $.each(strs, function(i, str) {
+        if (substrRegex.test(str)) {
+          matches.push(str);
+        }
+      });
+
+      cb(matches);
+    };
+  };
+
+  var states = <%= raw Institute.all.map{ |institute| institute.city }.uniq.as_json %>;
+
+  $('#city-picker .typeahead').typeahead({
+    hint: true,
+    highlight: true,
+    minLength: 1
+  },
+  {
+    name: 'states',
+    source: substringMatcher(states)
+  });
+
+
+  </script>
+<% end %>
+
 
 
