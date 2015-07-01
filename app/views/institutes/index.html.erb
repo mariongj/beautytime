@@ -1,2 +1,6 @@
-<h1>Institutes#index</h1>
-<p>Find me in app/views/institutes/index.html.erb</p>
+<h1 class="text-center">NOS INSTITUTS</h1>
+
+<% @institutes.each do |institute| %>
+  <h3><%= link_to institute.name, institute_path(institute) %></h3>
+  <img src="http://placehold.it/350x300">
+<% end %>

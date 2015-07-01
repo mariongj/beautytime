@@ -21,12 +21,18 @@ class InstitutesController < ApplicationController
   end
 
   def edit
+    @institute = Institute.find(params[:id])
   end
 
   def update
+    @institute = Institute.find(params[:id])
+    @institute.update(institute_params)
+    redirect_to institute_path(@institute)
   end
 
   def destroy
+    @institute.destroy
+    redirect_to institutes_path
   end
 
   private
