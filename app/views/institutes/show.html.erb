@@ -1,2 +1,7 @@
-<h1>Institutes#show</h1>
-<p>Find me in app/views/institutes/show.html.erb</p>
+<h1 class="text-center"><%= @institute.name %></h1>
+
+<p> <%= @institute.description %> </p>
+<p> <%= @institute.address %> <%= @institute.zipcode %>  <%= @institute.city %> </p>
+
+
+<div class="text-center"><%= link_to "Retour", institutes_path %></div>
