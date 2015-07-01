@@ -3,5 +3,13 @@
 <p> <%= @institute.description %> </p>
 <p> <%= @institute.address %> <%= @institute.zipcode %>  <%= @institute.city %> </p>
 
+<h2>Les services offerts :</h2>
+
+<% @services.each do |service|  %>
+  <h3><%= service.category %></h3>
+  <p><%= service.title %></p>
+  <p><%= service.price %></p>
+  <p><%= service.duration %></p>
+<% end %>
 
 <div class="text-center"><%= link_to "Retour", institutes_path %></div>

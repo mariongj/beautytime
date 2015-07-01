@@ -15,7 +15,7 @@
         <div class="row">
           <%= form_tag('/home', method: :get, class: "form-inline") do %>
             <%= select_tag "Service", options_for_select("Coiffure"), prompt: "Votre soin beauté", class: "form-control" %>
-            <%= select_tag "Lieu", options_for_select("Paris"), prompt: "Paris", class: "form-control" %>
+            <%= select_tag "Lieu", options_for_select(@cities), prompt: "Paris", class: "form-control" %>
             <%= select_date Date.current, {}, { prompt: Date.current, class: "form-control" } %>
             <%= submit_tag "RECHERCHER", class: "btn btn-black" %>
           <% end %>

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
- resources :institutes do
- end
+  root to: "pages#home"
+
+  resources :institutes do
+    resources :services, only: [:new, :create, :edit, :update, :destroy]
+  end
 
   devise_for :users
   resources :users, only: [:show, :edit, :update]

@@ -1,10 +1,17 @@
 class InstitutesController < ApplicationController
+  before_action :find_institute, only: [ :show, :edit, :update, :destroy ]
+
   def index
-    @institutes = Institute.all
+    if params[:city] && params[:category]
+      @institutes = Institute.where(city: params[:city]).where(category: params[:capacity])
+    else
+      @institutes = Institute.all
+    end
   end
 
+
   def show
-    @institute = Institute.find(params[:id])
+    @services = @institute.services
   end
 
   def new
@@ -13,6 +20,7 @@ class InstitutesController < ApplicationController
 
   def create
     @institute = current_user.institutes.build(institute_params)
+    @institute.validated = 0
     if @institute.save
       redirect_to institute_path(@institute)
     else
@@ -21,11 +29,10 @@ class InstitutesController < ApplicationController
   end
 
   def edit
-    @institute = Institute.find(params[:id])
+    @institute
   end
 
   def update
-    @institute = Institute.find(params[:id])
     @institute.update(institute_params)
     redirect_to institute_path(@institute)
   end
@@ -36,6 +43,10 @@ class InstitutesController < ApplicationController
   end
 
   private
+
+  def find_institute
+    @institute = Institute.find(params[:id])
+  end
 
   def institute_params
     params.require(:institute).permit( :user_id, :name, :description, :address, :city, :zipcode, :picture1, :picture2, :picture3)
