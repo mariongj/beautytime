@@ -34,6 +34,17 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
+#  picture_file_name      :string
+#  picture_content_type   :string
+#  picture_file_size      :integer
+#  picture_updated_at     :datetime
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+
 class User < ActiveRecord::Base
   has_many :institutes
   has_many :reviews
