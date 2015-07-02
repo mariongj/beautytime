@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-
+source 'https://rails-assets.org'
 ruby "2.2.2"
 
 gem "rails", "4.2.3"
@@ -23,6 +23,11 @@ gem 'twitter-typeahead-rails'
 gem "rails-i18n"
 gem "devise-i18n"
 gem "devise-i18n-views"
+
+gem "geocoder"
+gem "gmaps4rails"
+gem "rails-assets-underscore"
+gem 'coffee-rails'
 
 group :development, :test do
   gem "spring"
