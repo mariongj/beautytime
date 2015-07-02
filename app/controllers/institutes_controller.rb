@@ -1,23 +1,39 @@
 class InstitutesController < ApplicationController
   before_action :find_institute, only: [ :show, :edit, :update, :destroy ]
 
+
+
+#     if params[:city] && params[:category]
+#       @institutes = Institute.where(city: params[:city]).where(category: params[:capacity])
+#         @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
+#         marker.lat institute.latitude
+#         marker.lng institute.longitude
+#         end
+
+#     else
+#       @institutes = Institute.all
+#         @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
+#         marker.lat institute.latitude
+#         marker.lng institute.longitude
+#         end
+# =======
+
   def index
-    if params[:city] && params[:category]
-      @institutes = Institute.where(city: params[:city]).where(category: params[:capacity])
-        @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
-        marker.lat institute.latitude
-        marker.lng institute.longitude
-        end
-
-    else
       @institutes = Institute.all
-        @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
-        marker.lat institute.latitude
-        marker.lng institute.longitude
-        end
-    end
-  end
 
+      if not params[:city].empty?
+        @institutes = @institutes.where(city: params[:city])
+      end
+
+      if not params[:category].empty?
+        @institutes = @institutes.joins(:services).where(services: { category: params[:category] })
+      end
+
+      @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
+          marker.lat institute.latitude
+          marker.lng institute.longitude
+      end
+  end
 
   def show
     @services = @institute.services
@@ -25,6 +41,7 @@ class InstitutesController < ApplicationController
       marker.lat institute.latitude
       marker.lng institute.longitude
     end
+    # @bookings = @institute.services.bookings
   end
 
   def new
@@ -64,4 +81,5 @@ class InstitutesController < ApplicationController
   def institute_params
     params.require(:institute).permit( :user_id, :name, :description, :address, :city, :zipcode, :picture1, :picture2, :picture3)
   end
+
 end
