@@ -26,6 +26,10 @@
     transform: translateY(-50%);
   }
 
+.strong {
+  transform: bold;
+}
+
 .bg-red {
   background: $red;
   color: white;
