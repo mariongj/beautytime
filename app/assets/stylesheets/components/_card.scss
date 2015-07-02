@@ -1,6 +1,16 @@
+.white-card {
+  background-color: white ;
+  margin: 4%;
+  border-radius: 1px;
+  border-width: thin;
+  padding: 20px;
+  font-family: $header-font;
+  text-align: center;
+}
+
 .institute {
   background-color: white ;
-  margin: 2% 5%;
+  margin: 6%;
   border-radius: 1px;
   border-width: thin;
   // box-shadow: 0 0 20px #E6E6E6 ;
@@ -9,7 +19,7 @@
     background-size: cover;
   }
   &-body {
-    padding: 20px;
+    padding: 30px;
     font-size: 13px;
     text-align: left;
     .description {
@@ -27,7 +37,8 @@
       text-align: center;
       text-transform: italic;
       margin-top: 40px;
-      font-family: $header-font;
+      margin-bottom: 30px;
+      font-family: 'Lora';
       a {
         color: black;
         &:hover {

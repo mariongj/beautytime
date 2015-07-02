@@ -8,10 +8,11 @@
 
   line-height: 40px;
   padding: 0 10px;
+  margin: 10px;
   border-radius: 2px;
 
   font-weight: normal;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 1.5px;
 
   &:hover{
@@ -22,13 +23,15 @@
 .btn-white {
   color: black;
   background-color: white;
+  border: 1px solid $gray-lighter;
 
   line-height: 40px;
   padding: 0 10px;
+  margin: 10px;
   border-radius: 2px;
 
   font-weight: normal;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 1.5px;
 
   &:hover{
@@ -42,15 +45,51 @@
 
   line-height: 40px;
   padding: 0 10px;
+  margin: 10px;
   border-radius: 2px;
 
   font-weight: normal;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 1.5px;
 
   &:hover{
     background-color: black;
     color: white;
+  }
+}
+
+.details {
+  max-width: 200px;
+  border-top: 1px solid $gray-lighter;
+  border-bottom: 1px solid $gray-lighter;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  text-transform: italic;
+  font-family: 'Lora';
+  a {
+    color: black;
+    font-size: 13px;
+    &:hover {
+      color: $gold;
+    }
+  }
+}
+
+.link {
+  color: $gray-light;
+  font-size: 12px;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  text-transform: italic;
+  font-family: 'Lora';
+  a{
+    font-size: 12px;
+    color: $gray-light;
+    &:hover {
+      color: $gold;
+    }
   }
 }
 
