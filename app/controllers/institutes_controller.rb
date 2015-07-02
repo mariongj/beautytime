@@ -4,14 +4,27 @@ class InstitutesController < ApplicationController
   def index
     if params[:city] && params[:category]
       @institutes = Institute.where(city: params[:city]).where(category: params[:capacity])
+        @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
+        marker.lat institute.latitude
+        marker.lng institute.longitude
+        end
+
     else
       @institutes = Institute.all
+        @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
+        marker.lat institute.latitude
+        marker.lng institute.longitude
+        end
     end
   end
 
 
   def show
     @services = @institute.services
+    @markers = Gmaps4rails.build_markers(@institute) do |institute, marker|
+      marker.lat institute.latitude
+      marker.lng institute.longitude
+    end
   end
 
   def new
