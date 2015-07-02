@@ -1,10 +1,53 @@
 <h1 class="text-center"><%= @service.title %></h1>
 
-<h2>Les services offerts :</h2>
-
 <h3><%= @service.category %></h3>
 <p><%= @service.title %></p>
 <p><%= @service.price %></p>
 <p><%= @service.duration %></p>
 
-<div class="text-center"><%= link_to "Retour", institutes_path %></div>
+<div class="container calendar">
+
+  <div class="row">
+    Juillet 2015 >
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2 bg-yellow">
+      Jeu <br>
+      2
+    </div>
+    <div class="col-xs-2">
+      Ven <br>
+      3
+    </div>
+    <div class="col-xs-2">
+      Sam <br>
+      4
+    </div>
+    <div class="col-xs-2">
+      Dim <br>
+      5
+    </div>
+    <div class="col-xs-2">
+      Lun <br>
+      6
+    </div>
+    <div class="col-xs-2">
+      >
+    </div>
+  </div>
+
+  <% ["10:00", "10:30"].each do |time| %>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= time %>
+    </div>
+    <div class="col-xs-6">
+      <div><a href="#"><i>Réservez </i><i class="fa fa-long-arrow-right"></i></a></div>
+    </div>
+  </div>
+  <% end %>
+
+</div>
+
+<div class="text-center"><%= link_to "Retour", :back %></div>
