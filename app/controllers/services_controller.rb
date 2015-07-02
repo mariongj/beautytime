@@ -2,7 +2,8 @@ class ServicesController < ApplicationController
   before_action :find_service, only: [ :show, :edit, :update, :destroy ]
 
   def show
-    @service
+    @start_time = "10:00".to_time
+    @end_time = "19:00".to_time
   end
 
   def new
