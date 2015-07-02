@@ -1,25 +1,40 @@
-<h1 class="text-center"><%= @institute.name %></h1>
-
-<p> <%= @institute.description %> </p>
-<p> <%= @institute.address %> <%= @institute.zipcode %>  <%= @institute.city %> </p>
-
-<h2>Les services offerts :</h2>
-
-<div>
-  <ul class="list-inline">
-      <% @services.each do |service|  %>
-        <li>
-          <p><%= service.category %></p>
-          <p><%= service.title %></p>
-          <p><%= service.price %></p>
-          <p><%= service.duration %></p>
-        </li>
-        <li>
-          <%= link_to("Reserver", new_institute_service_booking_path(@institute, service)) %>
-        </li>
-      <% end %>
-  </ul>
+<div class="banner">
 </div>
 
 
-<div class="text-center"><%= link_to "Retour", institutes_path %></div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+       <div class="white-card">
+        <h1><%= @institute.name %></h1>
+        <p><%= @institute.description %></p>
+        <p><%= @institute.address %></p>
+        <p><%= @institute.zipcode %>, <%= @institute.city %></p>
+      </div>
+    </div>
+
+
+    <div class="col-xs-12 col-sm-6 col-md-3 col-md-offset-3">
+      <div class="white-card">
+        <ul class="text-left">
+          <h2>Services</h2>
+          <br>
+            <% @services.each do |service|  %>
+              <li>
+                <h4><%= service.title %></h4>
+                <p><%= service.description %></p>
+                <p><%= service.price %>€ - <%= service.duration %>min</p>
+                <%= link_to("Reserver", new_institute_service_booking_path(@institute, service), class:"btn-black" ) %>
+              </li>
+            <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="text-center btn-gold"><%= link_to "Retour", institutes_path %></div>
+
+

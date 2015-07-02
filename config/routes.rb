@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :institutes do
     resources :services, only: [:show, :new, :create, :edit, :update, :destroy] do
-      resources :bookings, only: [:new, :create]
+      resources :bookings, only: [:index, :new, :create]
     end
   end
 

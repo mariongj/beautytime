@@ -1,0 +1,18 @@
+<h1 class="text-center">VOS PROCHAINS RENDEZ-VOUS</h1>
+
+
+<ul>
+  <% @my_bookings.each do |service| %>
+    <div class="institute">
+      <li><%= service.title %>: Coût - <%= service.price %>€ / Durée - <%= service.duration %>min.
+        <br>
+        <% @bookings.each do |booking| %>
+          <%= booking.start_datetime %>
+          <%= booking.end_datetime %>
+        <% end %>
+      </li>
+    </div>
+  <% end %>
+</ul>
+
+
