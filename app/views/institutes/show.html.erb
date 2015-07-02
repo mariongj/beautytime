@@ -5,11 +5,21 @@
 
 <h2>Les services offerts :</h2>
 
-<% @services.each do |service|  %>
-  <h3><%= service.category %></h3>
-  <p><%= service.title %></p>
-  <p><%= service.price %></p>
-  <p><%= service.duration %></p>
-<% end %>
+<div>
+  <ul class="list-inline">
+      <% @services.each do |service|  %>
+        <li>
+          <p><%= service.category %></p>
+          <p><%= service.title %></p>
+          <p><%= service.price %></p>
+          <p><%= service.duration %></p>
+        </li>
+        <li>
+          <%= link_to("Reserver", new_institute_service_booking_path(@institute, service)) %>
+        </li>
+      <% end %>
+  </ul>
+</div>
+
 
 <div class="text-center"><%= link_to "Retour", institutes_path %></div>

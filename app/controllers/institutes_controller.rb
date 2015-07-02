@@ -2,16 +2,20 @@ class InstitutesController < ApplicationController
   before_action :find_institute, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    if params[:city] && params[:category]
-      @institutes = Institute.where(city: params[:city]).where(category: params[:capacity])
-    else
-      @institutes = Institute.all
+    @institutes = Institute.all
+
+    if not params[:city].empty?
+      @institutes = @institutes.where(city: params[:city])
+    end
+
+    if not params[:category].empty?
+      @institutes = @institutes.joins(:services).where(services: { category: params[:category] })
     end
   end
 
-
   def show
     @services = @institute.services
+    # @bookings = @institute.services.bookings
   end
 
   def new
