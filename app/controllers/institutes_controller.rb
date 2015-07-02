@@ -4,17 +4,18 @@ class InstitutesController < ApplicationController
   def index
     @institutes = Institute.all
 
-    if params[:city]
+    if not params[:city].empty?
       @institutes = @institutes.where(city: params[:city])
     end
 
-    if params[:category]
+    if not params[:category].empty?
       @institutes = @institutes.joins(:services).where(services: { category: params[:category] })
     end
   end
 
   def show
     @services = @institute.services
+    # @bookings = @institute.services.bookings
   end
 
   def new
