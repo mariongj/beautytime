@@ -1,10 +1,55 @@
 <h1 class="text-center"><%= @service.title %></h1>
 
-<h2>Les services offerts :</h2>
-
 <h3><%= @service.category %></h3>
 <p><%= @service.title %></p>
 <p><%= @service.price %></p>
 <p><%= @service.duration %></p>
 
-<div class="text-center"><%= link_to "Retour", institutes_path %></div>
+<div class="container calendar">
+
+  <div class="row">
+    <%= Date.today.month %> <%= Date.today.year %> <i class="fa fa-long-arrow-right">
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2 bg-yellow">
+      <%= Date::DAYNAMES[Date.today.wday] %><br>
+      <%= Date.today.day %>
+    </div>
+    <div class="col-xs-2">
+      Ven <br>
+      3
+    </div>
+    <div class="col-xs-2">
+      Sam <br>
+      4
+    </div>
+    <div class="col-xs-2">
+      Dim <br>
+      5
+    </div>
+    <div class="col-xs-2">
+      Lun <br>
+      6
+    </div>
+    <div class="col-xs-2">
+      >
+    </div>
+  </div>
+
+  <% $time = @start_time %>
+  <% until $time > @end_time do %>
+    <div class="row">
+      <div class="col-xs-6">
+        <%= $time %>
+      </div>
+      <div class="col-xs-6">
+        <div><a href="#"><i>Réservez </i><i class="fa fa-long-arrow-right"></i></a></div>
+      </div>
+    </div>
+    $time += 30.minute;
+  <% end %>
+
+</div>
+
+<div class="text-center"><%= link_to "Retour", :back %></div>

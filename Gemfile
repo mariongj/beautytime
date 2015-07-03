@@ -1,10 +1,9 @@
 source "https://rubygems.org"
-
+source 'https://rails-assets.org'
 ruby "2.2.2"
 
 gem "rails", "4.2.3"
 gem "pg"
-gem "figaro"
 gem "simple_form"
 gem "country_select"
 gem "high_voltage"
@@ -12,6 +11,7 @@ gem "devise"
 # gem "pundit"
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
+gem "figaro"
 
 gem "jquery-rails"
 gem "sass-rails", "~> 5.0"
@@ -23,6 +23,11 @@ gem 'twitter-typeahead-rails'
 gem "rails-i18n"
 gem "devise-i18n"
 gem "devise-i18n-views"
+
+gem "geocoder"
+gem "gmaps4rails"
+gem "rails-assets-underscore"
+gem 'coffee-rails'
 
 group :development, :test do
   gem "spring"

@@ -24,6 +24,8 @@
 #  picture3_content_type :string
 #  picture3_file_size    :integer
 #  picture3_updated_at   :datetime
+#  latitude              :float
+#  longitude             :float
 #
 # Indexes
 #
@@ -37,6 +39,9 @@ class Institute < ActiveRecord::Base
   has_many :reviews
 
   validates :name, presence: true
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
   has_attached_file :picture1,
      styles: { medium: "300x300>", thumb: "100x100>" }
