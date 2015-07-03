@@ -8,6 +8,17 @@
   text-align: center;
 }
 
+
+.white-card-list {
+  background-color: white ;
+  margin: 4%;
+  border-radius: 1px;
+  border-width: thin;
+  padding: 20px;
+  font-family: $header-font;
+  box-shadow: 0 2px 1px rgba(170, 170, 170, 0.25);
+}
+
 .institute {
   background-color: white ;
   margin: 6%;
