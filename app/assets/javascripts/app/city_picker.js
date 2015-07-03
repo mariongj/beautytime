@@ -20,7 +20,6 @@ var substringMatcher = function(strs) {
   };
 };
 
-var states = <%= Institute.all.map{ |institute| institute.city }.to_json %>;
 
 $('#city-picker .typeahead').typeahead({
   hint: true,
