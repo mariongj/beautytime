@@ -1,21 +1,25 @@
-<h1>MES INSTITUTS</h1>
-
-<div class="container">
-  <div class="row row-centered">
-    <div class="col-xs-6 col-xs-offset-3">
+<div class="title text-center">
+  <h1>MES INSTITUTS</h1>
+</div>
 
 
-        <% @bookings.each do |booking| %>
+<% @bookings.each do |booking| %>
 
-            <h2><%= booking.service.institute.name %></h2>
-            <%= booking.service.institute.description %>
-            <%= booking.service.institute.address %>
-            <%= booking.service.institute.zipcode %>
-            <%= booking.service.institute.city %>
-
-        <% end %>
-
+<div class="col-xs-12 col-sm-6 col-md-3">
+  <div class="institute">
+        <!--   <div class="institute-header" style="background-image: url('<%= asset_path 'evidence.jpg'%>');"></div> -->
+    <div class="institute-body">
+       <h2><%= booking.service.institute.name %></h2>
+        <p class="description"><%= booking.service.institute.description %></p>
+        <p class="description"><%= booking.service.institute.address %></p>
+        <p class="description">
+          <%= booking.service.institute.zipcode %>
+          <%= booking.service.institute.city %>
+        </p>
 
     </div>
   </div>
 </div>
+
+<%end%>
+
