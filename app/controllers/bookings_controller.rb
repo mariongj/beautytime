@@ -14,7 +14,8 @@ class BookingsController < ApplicationController
   def create
     @institute = Institute.find(params[:institute_id])
     @service = Service.find(params[:service_id])
-    @booking = current_user.bookings.new(params[:id])
+    @booking = current_user.bookings.new
+    @booking.service = @service
     @date = params[:booking][:date]
     @time = params[:booking][:time]
     year = @date.split("-")[0].to_i
