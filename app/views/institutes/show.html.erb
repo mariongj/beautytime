@@ -1,4 +1,4 @@
-<div class="banner-institute" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; height:600px" %>'>
+<div class="banner-institute" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; height:600px; position:relative" %>'>
 
 
 
@@ -276,4 +276,4 @@
     <% end %>
 <% end %>
 
-<div class="text-center btn-gold"><%= link_to "Retour", institutes_path %></div>
+<div class="text-center"><%= link_to "Retour", institutes_path %></div>

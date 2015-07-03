@@ -7,6 +7,8 @@
   <p>Né le <%= @user.birthdate %></p>
 </div>
 
-<div class="btn-gold text-center">
-  <%= link_to "Modifiez votre profil", edit_user_path(@user) %>
+<div class="container text-center">
+  <div class="btn-gold">
+    <%= link_to "Modifiez votre profil", edit_user_path(@user) %>
+  </div>
 </div>
