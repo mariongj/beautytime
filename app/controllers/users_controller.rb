@@ -17,6 +17,17 @@ class UsersController < ApplicationController
     redirect_to user_path
   end
 
+  def bookings
+    @bookings = current_user.bookings
+  end
+
+  def institutes
+    @bookings = current_user.bookings
+  end
+
+
+
+
   private
 
   def find_user

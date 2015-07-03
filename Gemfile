@@ -13,12 +13,14 @@ gem "paperclip"
 gem "aws-sdk", "< 2.0"
 gem "figaro"
 
+
 gem "jquery-rails"
 gem "sass-rails", "~> 5.0"
 gem "uglifier"
 gem "bootstrap-sass"
 gem "font-awesome-sass"
 gem 'twitter-typeahead-rails'
+gem "autoprefixer-rails"
 
 gem "rails-i18n"
 gem "devise-i18n"

@@ -1,0 +1,21 @@
+<h1>MES INSTITUTS</h1>
+
+<div class="container">
+  <div class="row row-centered">
+    <div class="col-xs-6 col-xs-offset-3">
+
+
+        <% @bookings.each do |booking| %>
+
+            <h2><%= booking.service.institute.name %></h2>
+            <%= booking.service.institute.description %>
+            <%= booking.service.institute.address %>
+            <%= booking.service.institute.zipcode %>
+            <%= booking.service.institute.city %>
+
+        <% end %>
+
+
+    </div>
+  </div>
+</div>
