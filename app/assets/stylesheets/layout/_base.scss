@@ -5,4 +5,12 @@
  * already a Bootstrap SCSS variable that does the same job
  * ------------------------------------- */
 
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
+.Site-content {
+  flex: 1;
+}

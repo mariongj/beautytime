@@ -19,17 +19,17 @@
         <% if user_signed_in? %>
           <li class="dropdown">
             <%= link_to "#", {class: "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-expanded" => "false"} do %>
-              <%= image_tag "http://placehold.it/30x30", class: "img-avatar" %>
+              <%= image_tag "penelope.jpg", class: "img-avatar" %>
               Espace personnel <span class="caret"></span>
             <% end %>
             <ul class="dropdown-menu" role="menu">
               <li>
-                <%= link_to "#" do %>
+                <%= link_to bookings_user_path(current_user) do %>
                   <i class="fa fa-home"></i> Mes rendez-vous
                 <% end %>
               </li>
               <li>
-                <%= link_to "#" do %>
+                <%= link_to institutes_user_path(current_user) do %>
                   <i class="fa fa-home"></i> Mes instituts
                 <% end %>
               </li>
@@ -39,7 +39,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to user_path(current_user) do %>
+                <%= link_to "#" do %>
                   <i class="fa fa-home"></i> Mon profil
                 <% end %>
               </li>
@@ -59,11 +59,17 @@
           </li>
         <% end %>
         <li>
-          <%= link_to t(".top_call_to_action", default: "NOUVEAU RENDEZ-VOUS"), "#", class: "btn" %>
+          <%= link_to t(".top_call_to_action", default: "NOUVEAU RENDEZ-VOUS"), root_path, class: "btn" %>
         </li>
         <li>
-          <%= link_to "#" do %>
+          <% if user_signed_in? %>
+            <%= link_to new_institute_path do%>
+             <i class="fa fa-envelope-o"></i> Espace Pro
+            <% end %>
+          <% else %>
+            <%= link_to new_user_session_path do %>
             <i class="fa fa-envelope-o"></i> Espace Pro
+            <% end %>
           <% end %>
         </li>
       </ul>
