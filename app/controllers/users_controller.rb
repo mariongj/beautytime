@@ -25,9 +25,6 @@ class UsersController < ApplicationController
     @bookings = current_user.bookings
   end
 
-
-
-
   private
 
   def find_user
