@@ -1,6 +1,11 @@
 class BookingsController < ApplicationController
 
   def index
+    @bookings = current_user.bookings
+    @my_bookings = []
+    @bookings.each do |booking|
+      @my_bookings << booking.service
+      end
   end
 
   def new
@@ -24,6 +29,14 @@ class BookingsController < ApplicationController
     else
       render :new
     end
+  end
+
+
+  private
+
+
+  def booking_params
+    params.require(:booking).permit(:user_id, :service_id, :start_datetime, :end_datetime)
   end
 
 end
