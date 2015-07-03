@@ -38,7 +38,7 @@
       text-transform: italic;
       margin-top: 40px;
       margin-bottom: 30px;
-      font-family: 'Lora';
+      font-family: $header-font;
       a {
         color: black;
         &:hover {
@@ -46,5 +46,12 @@
         }
       }
   }
+}
+
+.confirmation {
+  text-align: center;
+  font-family: $header-font;
+  margin: 4%;
+  padding: 20px;
 }
 

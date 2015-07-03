@@ -1,6 +1,5 @@
 <h1 class="text-center"><%= @institute.name %></h1>
 
-
 <% content_for(:after_js) do %>
 
 <% end %>
@@ -29,7 +28,6 @@
  <% content_for(:after_js) do %>
 
     <%= javascript_tag do %>
-
 
       $(document).on('ready', function() {
         handler = Gmaps.build('Google');
