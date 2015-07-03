@@ -1,55 +1,83 @@
-<h1 class="text-center"><%= @service.title %></h1>
+<h1 class="text-center"><%= @institute.name %>: <%= @service.title %></h1>
+<br>
 
-<h3><%= @service.category %></h3>
-<p><%= @service.title %></p>
-<p><%= @service.price %></p>
-<p><%= @service.duration %></p>
-
-<div class="container calendar">
-
+<div class="container">
   <div class="row">
-    <%= Date.today.month %> <%= Date.today.year %> <i class="fa fa-long-arrow-right">
-  </div>
 
-  <div class="row">
-    <div class="col-xs-2 bg-yellow">
-      <%= Date::DAYNAMES[Date.today.wday] %><br>
-      <%= Date.today.day %>
-    </div>
-    <div class="col-xs-2">
-      Ven <br>
-      3
-    </div>
-    <div class="col-xs-2">
-      Sam <br>
-      4
-    </div>
-    <div class="col-xs-2">
-      Dim <br>
-      5
-    </div>
-    <div class="col-xs-2">
-      Lun <br>
-      6
-    </div>
-    <div class="col-xs-2">
-      >
-    </div>
-  </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="container calendar">
 
-  <% $time = @start_time %>
-  <% until $time > @end_time do %>
-    <div class="row">
-      <div class="col-xs-6">
-        <%= $time %>
+        <% $date = Date.today %>
+        <% $monday = Date.commercial($date.cwyear, $date.cweek) %>
+
+        <div class="row">
+          <p>Cliquez sur l'horaire qui vous convient:</p>
+          <br>
+          <%= $monday.strftime("%B") %> <%= $monday.year %> <i class="fa fa-long-arrow-right"></i>
+        </div>
+
+        <% hours = Array.new(20) { |i| @start_time + (30 * i).minute } %>
+        <% days = Array.new(7) { |i| $monday + i.day } %>
+
+        <div class="row">
+          <div class="col-xs-1">
+          </div>
+          <% days.each do |d| %>
+            <div class="col-xs-1">
+              <%= d.strftime("%A")[0..2] %><br>
+              <%= d.mday %>
+            </div>
+          <% end %>
+          <div class="col-xs-1">
+            >
+          </div>
+        </div>
+
+
+        <% hours.each do |h| %>
+          <div class="row">
+            <div class="col-xs-1">
+              <%= h.to_s(:time) %>
+            </div>
+            <% days.each do |d| %>
+              <div class="col-xs-1">
+                <div>
+
+                  <a href="?date=<%= d.to_s %>&time=<%= h.to_s(:time)%>"><i class="fa fa-long-arrow-right"></i></a></div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
       </div>
-      <div class="col-xs-6">
-        <div><a href="#"><i>Réservez </i><i class="fa fa-long-arrow-right"></i></a></div>
-      </div>
     </div>
-    $time += 30.minute;
-  <% end %>
 
+    <% if @date %>
+      <div class="col-xs-12 col-sm-6">
+        <div class="confirmation">
+          <p><i>Confirmez votre réservation</i></p>
+          <p>chez <strong><%= @institute.name %></strong></p>
+          <p>pour un(e) <strong><%= @service.title %></strong></p>
+          <p><%= @service.price %>€, durée <%= @service.duration %> min</strong></p>
+          <p>à <strong><%= @time %></strong></p>
+          <p>le <strong><%= @date %></strong></p>
+
+          <%= simple_form_for [@institute, @service, @booking] do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+              <%= f.input :date, :as => :hidden, input_html: { value: @date } %>
+              <%= f.input :time, :as => :hidden, input_html: { value: @time } %>
+            </div>
+            <div class="form-actions text-center">
+              <%= f.submit "CONFIRMER", class: "btn btn-gold" %>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+    <% end %>
+
+  </div>
 </div>
 
 <div class="text-center"><%= link_to "Retour", :back %></div>

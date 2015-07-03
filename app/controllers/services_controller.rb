@@ -4,6 +4,12 @@ class ServicesController < ApplicationController
   def show
     @start_time = "10:00".to_time
     @end_time = "19:00".to_time
+
+    @institute = Institute.find(params[:institute_id])
+    @date = params[:date]
+    @time = params[:time]
+
+    @booking = Booking.new
   end
 
   def new
@@ -42,7 +48,7 @@ class ServicesController < ApplicationController
   end
 
   def service_params
-    params.require(:service).permit( :institute_id, :title, :description, :price, :duration, :category)
+    params.require(:service).permit(:service_id, :institute_id, :title, :description, :price, :duration, :category)
   end
 
 end
