@@ -16,7 +16,7 @@
 
           <%= form_tag(institutes_path, method: :get, class: "form-inline") do %>
             <%= select_tag :category, options_for_select(@categories, @categories.first), prompt: "Votre soin beauté", class: "form-control" %>
-            <%= select_date Date.current, {}, { prompt: Date.current, class: "form-control" } %>
+            <input type="text" data-provide='datepicker' placeholder= <%= Date.current %> class="form-control" >
             <div id="city-picker">
               <%= text_field_tag :city, nil, placeholder: "Ville", class: "form-control typeahead" %>
             </div>

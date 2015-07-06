@@ -33,7 +33,6 @@
           </div>
         </div>
 
-
         <% hours.each do |h| %>
           <div class="row">
             <div class="col-xs-1">
@@ -42,8 +41,20 @@
             <% days.each do |d| %>
               <div class="col-xs-1">
                 <div>
+                  <% dh = (d + h.seconds_since_midnight.seconds).to_datetime %>
+                  <% booked = false %>
 
-                  <a href="?date=<%= d.to_s %>&time=<%= h.to_s(:time)%>"><i class="fa fa-long-arrow-right"></i></a></div>
+                  <% @service.bookings.each do |b| %>
+                    <% if dh >= b.start_datetime && dh <= b.end_datetime %>
+                      <% booked = true %>
+                      <p>x</p>
+                    <% end %>
+                  <% end %>
+
+                  <% unless booked %>
+                    <a href="?date=<%= d.to_s %>&time=<%= h.to_s(:time)%>"><i class="fa fa-long-arrow-right"></i></a>
+                  <% end %>
+                </div>
               </div>
             <% end %>
           </div>
