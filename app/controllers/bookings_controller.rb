@@ -39,9 +39,8 @@ class BookingsController < ApplicationController
   end
 
   def update
-    @institute = Institute.find(params[:institute_id])
     @service = Service.find(params[:service_id])
-    @booking = Booking.find(params(booking_params))
+    @booking = Booking.find(params[:id])
     @booking.update(booking_params)
     redirect_to bookings_user_path
   end

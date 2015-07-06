@@ -14,7 +14,7 @@
         <p class="description"><%= booking.service.price.to_s + '€' %></p>
         <ul>
           <li class="list-inline">
-            <%= link_to edit_service_booking_path(booking, booking.service) do %>
+            <%= link_to edit_service_booking_path(booking.service, booking) do %>
               <i class="fa fa-pencil"></i> Éditer ma réservation
               <% end %>
           </li>
