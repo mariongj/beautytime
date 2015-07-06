@@ -18,7 +18,7 @@
 #  first_name             :string
 #  last_name              :string
 #  is_woman               :boolean
-#  phone_number           :boolean
+#  phone_number           :string
 #  birthdate              :string
 #  address                :string
 #  zipcode                :string
@@ -60,4 +60,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  validates :first_name, presence: true, on: :update
+  validates :last_name, presence: true, on: :update
+
+  def profile_complete?
+    return self.valid?
+  end
 end

@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :find_booking, only: [:edit, :update, :destroy]
 
   def index
     @my_bookings = current_user.bookings
@@ -32,11 +33,37 @@ class BookingsController < ApplicationController
     end
   end
 
+  def edit
+    @institute = Institute.find(params[:institute_id])
+    @service = Service.find(params[:service_id])
+    @booking = Booking.find(params(booking_params))
+  end
+
+  def update
+    @institute = Institute.find(params[:institute_id])
+    @service = Service.find(params[:service_id])
+    @booking = Booking.find(params(booking_params))
+    @booking.update(booking_params)
+    redirect_to bookings_user_path
+  end
+
+  def destroy
+    @institute = Institute.find(params[:institute_id])
+    @service = Service.find(params[:service_id])
+    @booking = Booking.find(params(booking_params))
+    @booking.destroy
+    redirect_to :back
+  end
+
   private
 
 
   def booking_params
     params.require(:booking).permit(:user_id, :service_id, :start_datetime, :end_datetime)
+  end
+
+  def find_booking
+    @booking = Booking.find(params[:booking_id])
   end
 
 end

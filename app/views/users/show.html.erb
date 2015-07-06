@@ -1,14 +1,26 @@
 <h1 class="text-center">VOTRE PROFIL</h1>
 
 <div class="white-card">
-  <h2><%= @user.first_name %> <%= @user.last_name.upcase  %></h2>
-  <p><%= @user.address%></p>
-  <p><%= @user.zipcode %>, <%= @user.city %></p>
-  <p>Né le <%= @user.birthdate %></p>
-</div>
+  <% if @user.profile_complete? %>
+    <%= image_tag @user.picture.url(:medium) %>
+    <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+    <p><%= @user.address%></p>
+    <p><%= @user.zipcode %>, <%= @user.city %></p>
+    <p> <%= @user.phone_number %></p>
+    <p>Né le <%= @user.birthdate %></p>
 
-<div class="container text-center">
-  <div class="btn-gold">
-    <%= link_to "Modifiez votre profil", edit_user_path(@user) %>
-  </div>
+    <div class="container text-center">
+      <div class="btn-gold">
+        <%= link_to "Modifiez votre profil", edit_user_path(@user) %>
+      </div>
+    </div>
+  <% else %>
+    <p>Vous n'avez pas encore complété votre profil.</p>
+
+    <div class="container text-center">
+      <div class="btn-gold">
+        <%= link_to "Compléter mon profil", edit_user_path(@user) %>
+      </div>
+    </div>
+  <% end %>
 </div>

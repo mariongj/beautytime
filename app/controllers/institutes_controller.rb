@@ -30,8 +30,13 @@ class InstitutesController < ApplicationController
       end
 
       @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
+        if institute.latitude && institute.longitude
           marker.lat institute.latitude
           marker.lng institute.longitude
+        else
+          raise
+        end
+
       end
   end
 
