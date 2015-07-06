@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :services, only: [] do
-    resources :bookings, only: [:index, :new, :create]
+    resources :bookings, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :timetables, only: [:new, :create, :edit, :update]
   end
 

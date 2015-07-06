@@ -15,11 +15,15 @@
           <%= monday.strftime("%B") %> <%= monday.year %>
         </div>
 
-        <% hours = Array.new(20) { |i| @start_time + (30 * i).minute } %>
+        <% slots = (@end_time - @start_time).to_min/30 %>
+        <% hours = Array.new(slots) { |i| @start_time + (30 * i).minute } %>
         <% days = Array.new(7) { |i| monday + i.day } %>
 
         <div class="row">
           <div class="col-xs-1">
+            <%= link_to :search_date => @search_date - 1.week do %>
+              <i class="fa fa-long-arrow-left"></i>
+            <% end %>
           </div>
           <% days.each do |d| %>
             <div class="col-xs-1">
@@ -28,7 +32,7 @@
             </div>
           <% end %>
           <div class="col-xs-1">
-            <%= link_to institute_service_path(@institute, @service) do %>
+            <%= link_to :search_date => @search_date + 1.week do %>
               <i class="fa fa-long-arrow-right"></i>
             <% end %>
           </div>

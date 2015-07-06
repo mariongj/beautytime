@@ -14,15 +14,15 @@
         <p class="description"><%= booking.service.price.to_s + '€' %></p>
         <ul>
           <li class="list-inline">
-            <%= link_to edit_booking_path(booking) do %>
-              <i class="fa fa-pencil"></i>
+            <%= link_to edit_service_booking_path(booking.service, booking) do %>
+              <i class="fa fa-pencil"></i> Éditer ma réservation
               <% end %>
           </li>
           <li class="list-inline">
-            <%= link_to booking_path(booking),
+            <%= link_to service_booking_path(booking.service, booking),
                  method: :delete,
                  data: { confirm: "Are you sure?" } do %>
-                 <i class="fa fa-trash"></i>
+                 <i class="fa fa-trash"></i> Supprimer ma réservation
                <% end %>
           </li>
         </ul>
