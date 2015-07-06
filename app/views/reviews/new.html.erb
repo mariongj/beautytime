@@ -1,0 +1,23 @@
+<div class="col-xs-12 col-md-4">
+  <h2>Comment s'est déroulée votre prestation? Laissez un commentaire</h2>
+  <%= simple_form_for [@booking, @review] do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+      <%= f.input :rate %>
+      <%= f.input :comments %>
+    </div>
+    <div class="form-actions text-center">
+      <%= f.submit "Enregistrer", class: "btn btn-success btn-lg" %>
+    </div>
+  <% end %>
+</div>
+
+
+<!--
+/institutes/:institute_id/services/:service_id/bookings/:booking_id/reviews
+
+institute_id OK
+service_id
+booking_id
+review_id
+ -->

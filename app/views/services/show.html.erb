@@ -62,7 +62,7 @@
           <p>à <strong><%= @time %></strong></p>
           <p>le <strong><%= @date %></strong></p>
 
-          <%= simple_form_for [@institute, @service, @booking] do |f| %>
+          <%= simple_form_for [@service, @booking] do |f| %>
             <%= f.error_notification %>
             <div class="form-inputs">
               <%= f.input :date, :as => :hidden, input_html: { value: @date } %>
@@ -76,6 +76,7 @@
         </div>
       </div>
     <% end %>
+
 
   </div>
 </div>

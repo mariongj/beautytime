@@ -2,14 +2,12 @@
 
 
 <ul>
-  <% @my_bookings.each do |service| %>
+  <% @my_bookings.each do |booking| %>
     <div class="institute">
-      <li><%= service.title %>: Coût - <%= service.price %>€ / Durée - <%= service.duration %>min.
+      <li><%= booking.service.title %>: Coût - <%= booking.service.price %>€ / Durée - <%= booking.service.duration %>min.
         <br>
-        <% @bookings.each do |booking| %>
           <%= booking.start_datetime %>
           <%= booking.end_datetime %>
-        <% end %>
       </li>
     </div>
   <% end %>
