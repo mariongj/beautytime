@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   end
 
   resources :services, only: [] do
-    resources :bookings, only: [:index, :new, :create]
+    resources :bookings, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
   resources :bookings, only: [] do
     resources :reviews, only: [:new, :create]
   end
+
+  resources :reviews, only: [:index]
 
   devise_for :users
   resources :users, only: [:show, :edit, :update] do
