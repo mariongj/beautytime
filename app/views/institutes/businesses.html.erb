@@ -1,0 +1,41 @@
+<div class="title text-center">
+  <h1>MES INSTITUTS</h1>
+</div>
+
+
+<% @institutes.each do |institute| %>
+
+<div class="col-xs-12 col-sm-6 col-md-3">
+  <div class="institute">
+       <div class="institute-header" style="background-image: url('<%= institute.picture1 %>');"></div>
+    <div class="institute-body">
+       <h2><%= institute.name %></h2>
+        <p class="description"><%= institute.description %></p>
+        <p class="description"><%= institute.address %></p>
+        <p class="description">
+          <%= institute.zipcode %>
+          <%= institute.city %>
+
+        </p>
+
+
+        <%= link_to edit_institute_path(institute) do %>
+          <i class="fa fa-pencil"></i> Éditer ma réservation
+          <%end%>
+
+
+          <br>
+
+
+         <%= link_to institute_path(institute),
+                 method: :delete,
+                 data: { confirm: "Are you sure?" } do %>
+                 <i class="fa fa-trash"></i> Supprimer mon institut
+               <% end %>
+                 redirect_to :back
+
+    </div>
+  </div>
+</div>
+
+<%end%>

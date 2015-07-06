@@ -77,6 +77,10 @@ class InstitutesController < ApplicationController
     redirect_to institutes_path
   end
 
+  def businesses
+    @institutes = current_user.institutes
+  end
+
   private
 
   def find_institute
