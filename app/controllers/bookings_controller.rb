@@ -24,7 +24,7 @@ class BookingsController < ApplicationController
     hour = @time.split(":")[0].to_i
     min = @time.split(":")[1].to_i
     @booking.start_datetime = DateTime.new(year, month, day, hour, min, 0)
-    @booking.end_datetime = @booking.start_datetime + @service.duration
+    @booking.end_datetime = @booking.start_datetime + @service.duration.minute
     if @booking.save
       redirect_to institute_path(@institute)
     else
