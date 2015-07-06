@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   resources :institutes do
     resources :services, only: [:show, :new, :create, :edit, :update, :destroy] do
-      resources :bookings, only: [:index, :new, :create]
+      resources :bookings, only: [:index, :new, :create, :destroy]
     end
   end
+
+  resources :bookings, only: [:edit, :update]
 
   devise_for :users
   resources :users, only: [:show, :edit, :update] do
