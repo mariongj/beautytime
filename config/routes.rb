@@ -2,12 +2,16 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :institutes do
-    resources :services, only: [:show, :new, :create, :edit, :update, :destroy] do
-      resources :bookings, only: [:index, :new, :create, :destroy]
-    end
+    resources :services, only: [:show, :new, :create, :edit, :update, :destroy]
   end
 
-  resources :bookings, only: [:edit, :update]
+  resources :services, only: [] do
+    resources :bookings, only: [:index, :new, :create]
+  end
+
+  resources :bookings, only: [] do
+    resources :reviews, only: [:new, :create]
+  end
 
   devise_for :users
   resources :users, only: [:show, :edit, :update] do

@@ -2,20 +2,20 @@ class BookingsController < ApplicationController
   before_action :find_booking, only: [:edit, :update, :destroy]
 
   def index
-    @bookings = current_user.bookings
-    @my_bookings = []
-    @bookings.each do |booking|
-      @my_bookings << booking.service
-      end
+    @my_bookings = current_user.bookings
+    # @my_bookings = []
+    # @bookings.each do |booking|
+    #   @my_bookings << booking
+    #   end
   end
 
   def new
   end
 
   def create
-    @institute = Institute.find(params[:institute_id])
+    # @institute = Institute.find(params[:institute_id])
     @service = Service.find(params[:service_id])
-    @booking = current_user.bookings.new
+    @booking = current_user.bookings.new(params[:id])
     @booking.service = @service
     @date = params[:booking][:date]
     @time = params[:booking][:time]
@@ -25,9 +25,9 @@ class BookingsController < ApplicationController
     hour = @time.split(":")[0].to_i
     min = @time.split(":")[1].to_i
     @booking.start_datetime = DateTime.new(year, month, day, hour, min, 0)
-    @booking.end_datetime = @booking.start_datetime + @service.duration
+    @booking.end_datetime = @booking.start_datetime + @service.duration.minute
     if @booking.save
-      redirect_to institute_path(@institute)
+      redirect_to bookings_user_path(current_user)
     else
       render :new
     end
@@ -54,7 +54,6 @@ class BookingsController < ApplicationController
     @booking.destroy
     redirect_to :back
   end
-
 
   private
 
