@@ -12,10 +12,13 @@
         <p class="description"><%= booking.service.description %></p>
         <p class="description"><%= booking.start_datetime %></p>
         <p class="description"><%= booking.service.price.to_s + '€' %></p>
-
+        <%= link_to new_booking_review_path(booking) do %>
+          <i class="fa fa-pencil"></i> Laisser un commentaire
+        <% end %>
     </div>
   </div>
 </div>
 
 <%end%>
+
 
