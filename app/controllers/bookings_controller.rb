@@ -34,9 +34,9 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @institute = Institute.find(params[:institute_id])
-    @service = Service.find(params[:service_id])
-    @booking = Booking.find(params(booking_params))
+    # @booking = Booking.find(params(booking_params))
+    # @institute = Institute.find(params[:institute_id])
+    # @service = @booking.service
   end
 
   def update
@@ -57,13 +57,12 @@ class BookingsController < ApplicationController
 
   private
 
+  def find_booking
+    @booking = Booking.find(params[:id])
+  end
 
   def booking_params
     params.require(:booking).permit(:user_id, :service_id, :start_datetime, :end_datetime)
-  end
-
-  def find_booking
-    @booking = Booking.find(params[:booking_id])
   end
 
 end

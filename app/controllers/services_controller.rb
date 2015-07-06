@@ -5,6 +5,8 @@ class ServicesController < ApplicationController
     @start_time = "10:00".to_time
     @end_time = "19:00".to_time
 
+    @search_date = Date.today
+
     @institute = Institute.find(params[:institute_id])
     @date = params[:date]
     @time = params[:time]
