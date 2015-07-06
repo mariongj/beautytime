@@ -34,9 +34,8 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @institute = Institute.find(params[:institute_id])
-    @service = Service.find(params[:service_id])
-    @booking = Booking.find(params(booking_params))
+    @booking = Booking.find(params[:id])
+    @service = @booking.service
   end
 
   def update
@@ -48,11 +47,8 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @institute = Institute.find(params[:institute_id])
-    @service = Service.find(params[:service_id])
-    @booking = Booking.find(params(booking_params))
     @booking.destroy
-    redirect_to :back
+    redirect_to bookings_user_path(current_user)
   end
 
   private
@@ -63,7 +59,7 @@ class BookingsController < ApplicationController
   end
 
   def find_booking
-    @booking = Booking.find(params[:booking_id])
+    @booking = Booking.find(params[:id])
   end
 
 end
