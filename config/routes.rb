@@ -3,9 +3,12 @@ Rails.application.routes.draw do
 
   resources :institutes do
     resources :services, only: [:show, :new, :create, :edit, :update, :destroy]
-  collection do                       # collection => no restaurant id in URL
-  get 'businesses', to: "institutes#businesses"  # RestaurantsController#top
-    end
+    collection do                       # collection => no restaurant id in URL
+    get 'businesses', to: "institutes#businesses"  # InstitutesController#businesses
+      end
+    member do                             # member => institute id in URL
+        get 'business', to: "institutes#business"  # InstitutesController#business
+      end
   end
 
   resources :services, only: [] do

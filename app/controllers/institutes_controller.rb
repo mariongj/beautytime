@@ -1,24 +1,6 @@
 class InstitutesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-
   before_action :find_institute, only: [ :show, :edit, :update, :destroy ]
-
-
-
-#     if params[:city] && params[:category]
-#       @institutes = Institute.where(city: params[:city]).where(category: params[:capacity])
-#         @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
-#         marker.lat institute.latitude
-#         marker.lng institute.longitude
-#         end
-
-#     else
-#       @institutes = Institute.all
-#         @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
-#         marker.lat institute.latitude
-#         marker.lng institute.longitude
-#         end
-# =======
 
   def index
     @institutes = Institute.all
@@ -47,14 +29,12 @@ class InstitutesController < ApplicationController
   def show
     @reviews = @institute.reviews
     @services = @institute.services
+    @reviews_average = reviews_average(@reviews)
+
     @markers = Gmaps4rails.build_markers(@institute) do |institute, marker|
       marker.lat institute.latitude
       marker.lng institute.longitude
     end
-
-    @reviews_average = reviews_average(@reviews)
-
-    # @bookings = @institute.services.bookings
   end
 
 
@@ -66,7 +46,7 @@ class InstitutesController < ApplicationController
     @institute = current_user.institutes.build(institute_params)
     @institute.validated = 0
     if @institute.save
-      redirect_to institute_path(@institute)
+      redirect_to businesses_institutes_path
     else
       render :new
     end
@@ -83,11 +63,20 @@ class InstitutesController < ApplicationController
 
   def destroy
     @institute.destroy
-    redirect_to institutes_path
+    redirect_to :back
   end
 
   def businesses
     @institutes = current_user.institutes
+  end
+
+  def business
+    @institute = Institute.find(params[:id])
+    @services = @institute.services
+    @markers = Gmaps4rails.build_markers(@institute) do |institute, marker|
+      marker.lat institute.latitude
+      marker.lng institute.longitude
+    end
   end
 
   private
@@ -107,5 +96,4 @@ class InstitutesController < ApplicationController
   def institute_params
     params.require(:institute).permit( :user_id, :name, :description, :address, :city, :zipcode, :picture1, :picture2, :picture3, :date, :time)
   end
-
 end

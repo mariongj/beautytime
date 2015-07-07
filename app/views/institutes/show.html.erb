@@ -1,11 +1,16 @@
-<div class="banner-institute" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; position:relative" %>'>
+
+<% content_for :title do %>
+  L'institut <%= @institute.name %>
+<% end %>
+<div class="banner-institute" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; height:600px; position:relative" %>'>
+
+<!-- <div class="banner-institute" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; position:relative" %>'>
+ -->
 
 
 
 </div>
 
-<% content_for(:after_js) do %>
-<% end %>
 
 
 
@@ -22,33 +27,33 @@
 </div>
 
 
-        <ul class="unstyled">
-          <br>
-            <% @services.each do |service|  %>
-              <li class='white-card-list'>
-                <div class="container">
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-4">
-                      <h4><%= service.title %></h4>
-                    </div>
-                    <div class="col-xs-12 col-sm-3">
-                      <div><%= service.price %>€ - <%= service.duration %>min</div>
-                    </div>
-                    <div class="col-xs-12 col-sm-3">
-                      <div><%= link_to "Voir disponibilités", institute_service_path(@institute, service) %></div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-12">
-                      <div>
-                        <%= service.description %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            <% end %>
-        </ul>
+<ul class="unstyled">
+  <br>
+    <% @services.each do |service|  %>
+      <li class='white-card-list'>
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-4">
+              <h4><%= service.title %></h4>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <div><%= service.price %>€ - <%= service.duration %>min</div>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <div><%= link_to "Voir disponibilités", institute_service_path(@institute, service) %></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div>
+                <%= service.description %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+</ul>
 
 
 <div id="map" style="width: 100%; height: 200px;"></div>
