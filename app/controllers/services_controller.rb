@@ -3,8 +3,8 @@ class ServicesController < ApplicationController
   before_action :find_timetable, only: [ :show, :edit, :update, :destroy ]
 
   def show
-    @start_time = "10:00".to_time
-    @end_time = "19:00".to_time
+    @start_time = [@timetable[0].monday_start_time, @timetable[0].monday_end_time, @timetable[0].tuesday_start_time, @timetable[0].tuesday_end_time, @timetable[0].wednesday_start_time, @timetable[0].wednesday_end_time, @timetable[0].thursday_start_time, @timetable[0].thursday_end_time, @timetable[0].friday_start_time, @timetable[0].friday_end_time, @timetable[0].saturday_start_time, @timetable[0].saturday_end_time, @timetable[0].sunday_start_time, @timetable[0].sunday_end_time].min
+    @end_time = [@timetable[0].monday_start_time, @timetable[0].monday_end_time, @timetable[0].tuesday_start_time, @timetable[0].tuesday_end_time, @timetable[0].wednesday_start_time, @timetable[0].wednesday_end_time, @timetable[0].thursday_start_time, @timetable[0].thursday_end_time, @timetable[0].friday_start_time, @timetable[0].friday_end_time, @timetable[0].saturday_start_time, @timetable[0].saturday_end_time, @timetable[0].sunday_start_time, @timetable[0].sunday_end_time].max
 
     @search_date = params[:search_date] ? params[:search_date].to_date : Date.today
 
@@ -51,15 +51,11 @@ class ServicesController < ApplicationController
   end
 
   def find_timetable
-    @timetable = Timetable.find(params[:id])
+    @timetable = Timetable.where({ service_id: params[:id] })
   end
 
   def service_params
     params.require(:service).permit(:institute_id, :title, :description, :price, :duration, :category)
   end
-
-  # def service__params
-  #    params.require(:service).permit(:service_id, :institute_id, :title, :description, :price, :duration, :category, :date, :time)
-  # end
 
 end
