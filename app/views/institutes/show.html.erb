@@ -286,7 +286,15 @@
         </div>
         <div class="col-sm-11 col-xs-12">
           <li class='white-card-list'>
-            <p><%= review.rate %>/20</p>
+
+
+            <p>
+              <% review.rate.times do %>
+                <i class="fa fa-star gold"></i>
+              <% end %>
+            </p>
+
+
             <h3><i>"<%= review.comments %>"</i></h3>
             <p>Laissé il y a <%= time_ago_in_words(review.created_at) %> par <%= review.user.first_name %> <%= review.user.last_name %> pour la prestation "<%= review.booking.service.category %>".</p>
           </li>
