@@ -24,7 +24,7 @@ class ServicesController < ApplicationController
     @institute = Institute.find(params[:institute_id])
     @service = @institute.services.new(service_params)
     if @service.save
-      redirect_to institute_path(@institute)
+      redirect_to new_service_timetable_path(@service)
     else
       render :new
     end
@@ -36,7 +36,7 @@ class ServicesController < ApplicationController
 
   def update
     @service.update(service_params)
-    redirect_to service_path(@service)
+    redirect_to edit_service_timetable_path(@service)
   end
 
   def destroy

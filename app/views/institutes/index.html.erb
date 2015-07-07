@@ -11,7 +11,7 @@
     <% @institutes.each do |institute| %>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="institute">
-          <div class="institute-header" style="background-image: url('<%= asset_path 'nailsparis.jpg'%>');"></div>
+          <div class="institute-header" style="background-image: url('<%= institute.picture1 %>');"></div>
           <div class="institute-body">
             <h2><%= link_to institute.name, institute_path(institute) %></h2>
             <p class="description"><%= institute.description %></p>
