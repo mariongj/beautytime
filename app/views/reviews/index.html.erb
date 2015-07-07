@@ -1,4 +1,22 @@
+<div class="title text-center">
+  <h1>MES AVIS</h1>
+</div>
+
 <% @reviews.each do |review| %>
-  <%= review.rate %>
-  <%= review.comments %>
+
+  <div class="col-xs-12 col-sm-6 col-md-3">
+
+   <div class="institute">
+      <div class="institute-body">
+       <h2><strong><%= link_to review.institute.name, institute_path(review.institute), class:"gold" %></strong></h2>
+       <h2><%=review.booking.service.category%></h2>
+       <p>
+        <% review.rate.times do %>
+        <i class="fa fa-star gold"></i>
+        <% end %>
+       </p>
+       <p>"<%= review.comments %>."</p>
+      </div>
+   </div>
+  </div>
 <% end %>
