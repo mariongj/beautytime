@@ -1,5 +1,9 @@
 class ReviewsController < ApplicationController
 
+  def index
+    @reviews = current_user.reviews
+  end
+
   def new
     @booking = Booking.find(params[:booking_id])
     @review = Review.new(booking_id: @booking.id)
@@ -8,8 +12,10 @@ class ReviewsController < ApplicationController
   def create
     @booking = Booking.find(params[:booking_id])
     @review = @booking.reviews.build(review_params)
+    @review.user = current_user
+    @review.institute = @booking.service.institute
     if @review.save
-      redirect_to institute_path(booking.service.institute)
+      redirect_to bookings_user_path(current_user)
     else
       render :new
     end
@@ -18,6 +24,9 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:reviews).permit(:rate, :comments)
+    params.require(:review).permit(:rate, :comments)
   end
 end
+
+
+

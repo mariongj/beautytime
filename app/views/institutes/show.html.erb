@@ -1,7 +1,11 @@
+
 <% content_for :title do %>
   L'institut <%= @institute.name %>
 <% end %>
 <div class="banner-institute" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; height:600px; position:relative" %>'>
+
+<!-- <div class="banner-institute" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; position:relative" %>'>
+ -->
 
 
 
@@ -10,7 +14,7 @@
 
 
 
-<div class="text-center">
+<div class="text-center institute-infos">
   <h1><%= @institute.name %></h1>
   <p><%= @institute.description %></p>
   <p><%= @institute.address %></p>
@@ -272,5 +276,29 @@
 
 </script>
 <% end %>
+
+<div class="text-center">
+  <h1>Commentaires</h1>
+</div>
+
+
+<ul class="unstyled unpadded">
+  <br>
+    <% @reviews.each do |review|  %>
+      <div class="row">
+        <div class="col-sm-1 hidden-xs">
+          <%= image_tag review.user.picture, class: "image-user"%>
+        </div>
+        <div class="col-sm-11 col-xs-12">
+          <li class='white-card-list'>
+            <p><%= review.rate %>/20</p>
+            <h3><i>"<%= review.comments %>"</i></h3>
+            <p>Laissé il y a <%= time_ago_in_words(review.created_at) %> par <%= review.user.first_name %> <%= review.user.last_name %> pour la prestation "<%= review.booking.service.category %>".</p>
+          </li>
+        </div>
+      </div>
+    <% end %>
+</ul>
+
 
 <div class="text-center"><%= link_to "Retour", institutes_path %></div>
