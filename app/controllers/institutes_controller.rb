@@ -58,8 +58,8 @@ class InstitutesController < ApplicationController
     @institute = current_user.institutes.build(institute_params)
     @institute.validated = 0
     if @institute.save
-      redirect_to new_institute_service_path(@institute)
-    else
+        redirect_to new_institute_service_path(@institute)
+      else
       render :new
     end
   end
@@ -70,7 +70,7 @@ class InstitutesController < ApplicationController
 
   def update
     @institute.update(institute_params)
-    redirect_to institute_path(@institute)
+    redirect_to business_institute_path(@institute)
   end
 
   def destroy

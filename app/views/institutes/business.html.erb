@@ -17,6 +17,11 @@
   <p><%= @institute.zipcode %>, <%= @institute.city %></p>
 </div>
 
+     <div class= "text-center">
+          <%= link_to "Ajouter une prestation",
+          new_institute_service_path(@institute),
+          class: "btn btn-large btn-success" %>
+      </div>
 
 <ul class="unstyled">
   <br>
@@ -31,7 +36,27 @@
               <div><%= service.price %>€ - <%= service.duration %>min</div>
             </div>
             <div class="col-xs-12 col-sm-3">
-              <div><%= link_to "Voir disponibilités", institute_service_path(@institute, service) %></div>
+                 <ul>
+                  <li class="list-inline">
+                     <%= link_to edit_institute_service_path(service.institute, service) do %>
+                       <i class="fa fa-pencil"></i> Modifier la prestation
+                       <% end %>
+                  </li>
+                  <li class="list-inline">
+                     <%= link_to institute_service_path(service.institute, service),
+                          method: :delete,
+                          data: { confirm: "Are you sure?" } do %>
+                          <i class="fa fa-trash"></i> Supprimer la prestation
+                        <% end %>
+                  </li>
+                </ul>
+                <ul>
+                  <li class="list-inline">
+                     <%= link_to new_service_booking_path(service) do %>
+                       <i class="fa fa-users"></i> Bloquer un rendez-vous
+                       <% end %>
+                  </li>
+                </ul>
             </div>
           </div>
           <div class="row">

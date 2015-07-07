@@ -19,8 +19,8 @@
 
 class Service < ActiveRecord::Base
   belongs_to :institute
-  has_many :bookings
-  has_many :timetables
+  has_many :bookings, dependent: :destroy
+  has_many :timetables, dependent: :destroy
 
   validates :title, presence:true
   validates :duration, presence:true
