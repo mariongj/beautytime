@@ -4,62 +4,34 @@
 
 <% @bookings.each do |booking| %>
 
-<div class="col-xs-12 col-sm-6 col-md-3">
-<<<<<<< HEAD
- <div class="institute">
-       <!--   <div class="institute-header" style="background-image: url('<%= asset_path 'evidence.jpg'%>');"></div> -->
-   <div class="institute-body">
-     <h2> <%=booking.service.title%></h2>
-       <p class="description"><%= booking.service.description %></p>
-       <p class="description"><%= booking.start_datetime %></p>
-       <p class="description"><%= booking.service.price.to_s + '€' %></p>
-       <ul>
-         <li class="list-inline">
-           <%= link_to edit_service_booking_path(booking.service, booking) do %>
-             <i class="fa fa-pencil"></i> Éditer ma réservation
-             <% end %>
-         </li>
-         <li class="list-inline">
-           <%= link_to service_booking_path(booking.service, booking),
-                method: :delete,
-                data: { confirm: "Are you sure?" } do %>
-                <i class="fa fa-trash"></i> Supprimer ma réservation
-              <% end %>
-         </li>
-       </ul>
-       <%= link_to new_booking_review_path(booking) do %>
-         <i class="fa fa-star"></i> Laisser un commentaire
-       <% end %>
-   </div>
- </div>
-=======
-  <div class="institute">
-        <!--   <div class="institute-header" style="background-image: url('<%= asset_path 'evidence.jpg'%>');"></div> -->
-    <div class="institute-body">
-      <h2> <%=booking.service.title%></h2>
-        <p class="description"><%= booking.service.description %></p>
-        <p class="description"><%= booking.start_datetime %></p>
-        <p class="description"><%= booking.service.price.to_s + '€' %></p>
-        <ul>
-          <li class="list-inline">
-            <%= link_to edit_service_booking_path(booking.service, booking) do %>
-              <i class="fa fa-pencil"></i> Éditer ma réservation
-              <% end %>
-          </li>
-          <li class="list-inline">
-            <%= link_to service_booking_path(booking.service, booking),
-                 method: :delete,
-                 data: { confirm: "Are you sure?" } do %>
-                 <i class="fa fa-trash"></i> Supprimer ma réservation
+  <div class="col-xs-12 col-sm-6 col-md-3">
+
+   <div class="institute">
+         <!--   <div class="institute-header" style="background-image: url('<%= asset_path 'evidence.jpg'%>');"></div> -->
+     <div class="institute-body">
+       <h2> <%=booking.service.title%></h2>
+         <p class="description"><%= booking.service.description %></p>
+         <p class="description"><%= booking.start_datetime %></p>
+         <p class="description"><%= booking.service.price.to_s + '€' %></p>
+         <ul>
+           <li class="list-inline">
+             <%= link_to edit_service_booking_path(booking.service, booking) do %>
+               <i class="fa fa-pencil"></i> Éditer ma réservation
                <% end %>
-          </li>
-        </ul>
-        <%= link_to new_booking_review_path(booking) do %>
-          <i class="fa fa-star"></i> Laisser un commentaire
-        <% end %>
-    </div>
+           </li>
+           <li class="list-inline">
+             <%= link_to service_booking_path(booking.service, booking),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } do %>
+                  <i class="fa fa-trash"></i> Supprimer ma réservation
+                <% end %>
+           </li>
+         </ul>
+         <%= link_to new_booking_review_path(booking) do %>
+           <i class="fa fa-star"></i> Laisser un commentaire
+         <% end %>
+     </div>
+   </div>
   </div>
->>>>>>> 254aec310164cdeef3be86b8f6a9dee65be88964
-</div>
 
 <%end%>

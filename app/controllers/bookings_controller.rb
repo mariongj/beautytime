@@ -33,7 +33,6 @@ class BookingsController < ApplicationController
      end
    end
 
-<<<<<<< HEAD
    def edit
      @booking = Booking.find(params[:id])
      @service = @booking.service
@@ -50,24 +49,7 @@ class BookingsController < ApplicationController
      @booking.destroy
      redirect_to bookings_user_path(current_user)
    end
-=======
-  def edit
-    @booking = Booking.find(params[:id])
-    @service = @booking.service
-  end
 
-  def update
-    @service = Service.find(params[:service_id])
-    @booking = Booking.find(params[:id])
-    @booking.update(booking_params)
-    redirect_to bookings_user_path
-  end
-
-  def destroy
-    @booking.destroy
-    redirect_to bookings_user_path(current_user)
-  end
->>>>>>> 254aec310164cdeef3be86b8f6a9dee65be88964
 
    private
 
@@ -79,11 +61,4 @@ class BookingsController < ApplicationController
      params.require(:booking).permit(:user_id, :service_id, :start_datetime, :end_datetime)
    end
 
-<<<<<<< HEAD
-   def find_booking
-     @booking = Booking.find(params[:id])
-   end
-
-=======
->>>>>>> 254aec310164cdeef3be86b8f6a9dee65be88964
 end
