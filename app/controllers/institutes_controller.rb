@@ -21,11 +21,11 @@ class InstitutesController < ApplicationController
   def index
       @institutes = Institute.all
 
-      if not params[:city].empty?
+      if params[:city]
         @institutes = @institutes.where(city: params[:city])
       end
 
-      if not params[:category].empty?
+      if params[:category]
         @institutes = @institutes.joins(:services).where(services: { category: params[:category] })
       end
 
@@ -58,7 +58,7 @@ class InstitutesController < ApplicationController
     @institute = current_user.institutes.build(institute_params)
     @institute.validated = 0
     if @institute.save
-      redirect_to institute_path(@institute)
+      redirect_to businesses_institutes_path
     else
       render :new
     end
@@ -75,11 +75,20 @@ class InstitutesController < ApplicationController
 
   def destroy
     @institute.destroy
-    redirect_to institutes_path
+    redirect_to :back
   end
 
   def businesses
     @institutes = current_user.institutes
+  end
+
+  def business
+    @institute = Institute.find(params[:id])
+    @services = @institute.services
+    @markers = Gmaps4rails.build_markers(@institute) do |institute, marker|
+      marker.lat institute.latitude
+      marker.lng institute.longitude
+    end
   end
 
   private
