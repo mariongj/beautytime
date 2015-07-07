@@ -1,4 +1,6 @@
 class InstitutesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   before_action :find_institute, only: [ :show, :edit, :update, :destroy ]
 
 
@@ -19,25 +21,27 @@ class InstitutesController < ApplicationController
 # =======
 
   def index
-      @institutes = Institute.all
+    @institutes = Institute.all
 
-      if not params[:city].empty?
-        @institutes = @institutes.where(city: params[:city])
+    latitude = params[:lat]
+    longitude = params[:lng]
+
+    if latitude && longitude
+      @institutes = @institutes.near([latitude, longitude], 5, units: :km)
+    elsif params[:city].present?
+      @institutes = @institutes.where(city: params[:city])
+    end
+
+    if params[:category].present?
+      @institutes = @institutes.joins(:services).where(services: { category: params[:category] })
+    end
+
+    @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
+      if institute.latitude && institute.longitude
+        marker.lat institute.latitude
+        marker.lng institute.longitude
       end
-
-      if not params[:category].empty?
-        @institutes = @institutes.joins(:services).where(services: { category: params[:category] })
-      end
-
-      @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
-        if institute.latitude && institute.longitude
-          marker.lat institute.latitude
-          marker.lng institute.longitude
-        else
-          raise
-        end
-
-      end
+    end
   end
 
   def show
