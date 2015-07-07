@@ -23,4 +23,5 @@ class Review < ActiveRecord::Base
   belongs_to :institute
 
   validates :rate, presence:true
+  validates_inclusion_of :rate, :in => 0..5, :message => "La note doit être comprise entre 0 et 5"
 end
