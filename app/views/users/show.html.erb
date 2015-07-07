@@ -6,7 +6,7 @@
 
 <div class="white-card">
   <% if @user.profile_complete? %>
-    <%= image_tag @user.picture.url(:medium) %>
+    <%= image_tag @user.picture.url(:medium), class:"rounded" %>
     <h2><%= @user.first_name %> <%= @user.last_name %></h2>
     <p><%= @user.address%></p>
     <p><%= @user.zipcode %>, <%= @user.city %></p>
