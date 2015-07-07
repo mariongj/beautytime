@@ -40,7 +40,7 @@ class Institute < ActiveRecord::Base
 
   validates :name, presence: true
 
-  geocoded_by :address
+  geocoded_by :full_address
   after_validation :geocode, if: :address_changed?
 
   has_attached_file :picture1,
@@ -61,5 +61,7 @@ class Institute < ActiveRecord::Base
   validates_attachment_content_type :picture3,
    content_type: /\Aimage\/.*\z/
 
-
+  def full_address
+    "#{address}, #{zipcode} #{city}"
+  end
 end

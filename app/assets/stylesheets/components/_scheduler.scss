@@ -1,0 +1,44 @@
+.day {
+  &-picker {
+    background-color: rgb(249, 249, 249);
+    padding: 22px;
+    margin-bottom: 5px;
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    transform: translateY(0);
+
+    &.is-hidden {
+      opacity: 0;
+      transform: translateY(20px);
+
+    }
+  }
+  &-hours {
+    background-color: $green;
+    border-radius: 2px;
+    color: white;
+    margin: 0 50px;
+    padding: 2px;
+  }
+}
+
+.slider-handle {
+  background-image: none !important;
+  background-color: black !important;
+  margin-left: -4px !important;
+  margin-top: -7px !important;
+  border-radius: 5px !important;
+  width: 5px !important;
+}
+.slider-selection {
+  background-color: $green !important;
+  background-image: none !important;
+  height: 6px !important;
+}
+
+.slider-track-low, .slider-track-high {
+  height: 6px !important;
+  background-color: red;
+}
+
+

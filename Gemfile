@@ -20,6 +20,7 @@ gem "uglifier"
 gem "bootstrap-sass"
 gem "font-awesome-sass"
 gem 'twitter-typeahead-rails'
+gem 'bootstrap-slider-rails'
 gem "autoprefixer-rails"
 
 gem "rails-i18n"
