@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :institutes do
     resources :services, only: [:show, :new, :create, :edit, :update, :destroy]
+  collection do                       # collection => no restaurant id in URL
+  get 'businesses', to: "institutes#businesses"  # RestaurantsController#top
+    end
   end
 
   resources :services, only: [] do
