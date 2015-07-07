@@ -47,8 +47,12 @@ class InstitutesController < ApplicationController
       marker.lat institute.latitude
       marker.lng institute.longitude
     end
+
+    @reviews_average = reviews_average(@reviews)
+
     # @bookings = @institute.services.bookings
   end
+
 
   def new
     @institute = Institute.new
@@ -83,6 +87,14 @@ class InstitutesController < ApplicationController
   end
 
   private
+
+  def reviews_average(reviews)
+    reviews_stocked = []
+    reviews.each do |review|
+      reviews_stocked << review.rate
+    end
+    return reviews_stocked.inject(:+) / reviews.size
+  end
 
   def find_institute
     @institute = Institute.find(params[:id])

@@ -14,6 +14,11 @@
   <p><%= @institute.description %></p>
   <p><%= @institute.address %></p>
   <p><%= @institute.zipcode %>, <%= @institute.city %></p>
+  <p>
+    <% @reviews_average.times do %>
+      <i class="fa fa-star gold"></i>
+    <% end %>
+  </p>
 </div>
 
 
