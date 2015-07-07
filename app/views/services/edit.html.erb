@@ -1,8 +1,8 @@
 <%= content_for(:title) do %>
-  Nouvelle prestation
+ Modification de la prestation
 <% end %>
 
-<h2 class="text-center">Ajouter une prestation pour <%= @institute.name %></h2>
+<h2 class="text-center"> Modifier une prestation pour <%= @institute.name %></h2>
 
 <div class="container">
   <div class="row">
@@ -15,7 +15,7 @@
           <%= f.input :price, class: "form-control" %>
           <%= f.input :duration, class: "form-control" %>
           <%= f.input :category, class: "form-control" %>
-          <%= f.submit "Modifier votre service", class: "btn btn-black" %>
+          <%= f.submit "Modifier votre prestation", class: "btn btn-black" %>
         <% end %>
       </div>
     </div>
