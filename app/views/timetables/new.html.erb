@@ -1,0 +1,62 @@
+<div container text-center>
+  <div class="white-card" >
+    <h3><%= @service.institute.name %>: Horaires pour <%= @service.title %></h3>
+
+    <%= simple_form_for [@service, @timetable] do |f| %>
+    <% default_timetable = Array.new(20) { |i| "10:00".to_time + (30 * i).minute } %>
+    <div class="form-inline">
+      <%= f.input :monday_start_time, class:"form-control" do %>
+        <%= f.select :monday_start_time, Array.new(10) { |i| ("8:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "10:00".to_time.to_s(:time) %>
+      <% end %>
+      <%= f.input :monday_end_time, class:"form-control" do %>
+        <%= f.select :monday_end_time, Array.new(10) { |i| ("17:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "19:00".to_time.to_s(:time) %>
+      <% end %>
+      <br>
+      <%= f.input :tuesday_start_time, class:"form-control" do %>
+        <%= f.select :tuesday_start_time, Array.new(10) { |i| ("8:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "10:00".to_time.to_s(:time) %>
+      <% end %>
+      <%= f.input :tuesday_end_time, class:"form-control" do %>
+        <%= f.select :tuesday_end_time, Array.new(10) { |i| ("17:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "19:00".to_time.to_s(:time) %>
+      <% end %>
+      <br>
+      <%= f.input :wednesday_start_time, class:"form-control" do %>
+        <%= f.select :wednesday_start_time, Array.new(10) { |i| ("8:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "10:00".to_time.to_s(:time) %>
+      <% end %>
+      <%= f.input :wednesday_end_time, class:"form-control" do %>
+        <%= f.select :wednesday_end_time, Array.new(10) { |i| ("17:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "19:00".to_time.to_s(:time) %>
+      <% end %>
+      <br>
+      <%= f.input :thursday_start_time, class:"form-control" do %>
+        <%= f.select :thursday_start_time, Array.new(10) { |i| ("8:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "10:00".to_time.to_s(:time) %>
+      <% end %>
+      <%= f.input :thursday_end_time, class:"form-control" do %>
+        <%= f.select :thursday_end_time, Array.new(10) { |i| ("17:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "19:00".to_time.to_s(:time) %>
+      <% end %>
+      <br>
+      <%= f.input :friday_start_time, class:"form-control" do %>
+        <%= f.select :friday_start_time, Array.new(10) { |i| ("8:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "10:00".to_time.to_s(:time) %>
+      <% end %>
+      <%= f.input :friday_end_time, class:"form-control" do %>
+        <%= f.select :friday_end_time, Array.new(10) { |i| ("17:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "19:00".to_time.to_s(:time) %>
+      <% end %>
+      <br>
+      <%= f.input :saturday_start_time, class:"form-control" do %>
+        <%= f.select :saturday_start_time, Array.new(10) { |i| ("8:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "10:00".to_time.to_s(:time) %>
+      <% end %>
+      <%= f.input :saturday_end_time, class:"form-control" do %>
+        <%= f.select :saturday_end_time, Array.new(10) { |i| ("17:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "19:00".to_time.to_s(:time) %>
+      <% end %>
+      <br>
+      <%= f.input :sunday_start_time, class:"form-control" do %>
+        <%= f.select :sunday_start_time, Array.new(10) { |i| ("8:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "10:00".to_time.to_s(:time) %>
+      <% end %>
+      <%= f.input :sunday_end_time, class:"form-control" do %>
+        <%= f.select :sunday_end_time, Array.new(10) { |i| ("17:00".to_time + (30 * i).minute).to_s(:time) }, prompt: "19:00".to_time.to_s(:time) %>
+      <% end %>
+      <br>
+    </div>
+      <%= f.submit "Enregistrer", class: "btn btn-black" %>
+
+    <% end %>
+  </div>
+</div>

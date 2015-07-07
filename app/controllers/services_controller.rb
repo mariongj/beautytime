@@ -1,9 +1,12 @@
 class ServicesController < ApplicationController
   before_action :find_service, only: [ :show, :edit, :update, :destroy ]
+  before_action :find_timetable, only: [ :show, :edit, :update, :destroy ]
 
   def show
     @start_time = "10:00".to_time
     @end_time = "19:00".to_time
+
+    @search_date = params[:search_date] ? params[:search_date].to_date : Date.today
 
     @institute = Institute.find(params[:institute_id])
     @date = params[:date]
@@ -47,8 +50,12 @@ class ServicesController < ApplicationController
     @service = Service.find(params[:id])
   end
 
+  def find_timetable
+    @timetable = Timetable.find(params[:id])
+  end
+
   def service_params
-    params.require(:service).permit(:service_id, :institute_id, :title, :description, :price, :duration, :category)
+    params.require(:service).permit(:institute_id, :title, :description, :price, :duration, :category)
   end
 
   # def service__params

@@ -3,13 +3,20 @@ Rails.application.routes.draw do
 
   resources :institutes do
     resources :services, only: [:show, :new, :create, :edit, :update, :destroy]
+  collection do                       # collection => no restaurant id in URL
+  get 'businesses', to: "institutes#businesses"  # RestaurantsController#top
+    end
   end
 
   resources :services, only: [] do
     resources :bookings, only: [:index, :new, :create, :edit, :update, :destroy]
+<<<<<<< HEAD
+=======
+    resources :timetables, only: [:new, :create, :edit, :update]
+>>>>>>> 254aec310164cdeef3be86b8f6a9dee65be88964
   end
 
-  resources :bookings, only: [] do
+  resources :bookings, only: [:update, :edit, :destroy] do
     resources :reviews, only: [:new, :create]
   end
 
