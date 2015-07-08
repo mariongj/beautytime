@@ -1,24 +1,42 @@
-class Business::BookingsController < ApplicationController
+module Business
 
-  def index
-  end
+  class BookingsController < ApplicationController
+    before_action :find_booking, only: [:edit, :update, :destroy]
 
-  def show
-  end
+    def index
+      @service = Service.find(params[:service_id])
+      @bookings= Booking.all
+    end
 
-  def new
-  end
+    def show
+      @service = Service.find(params[:service_id]
 
-  def create
-  end
+    end
 
-  def edit
-  end
+    def new
+    end
 
-  def update
-  end
+    def create
+    end
 
-  def destroy
+    def edit
+    end
+
+    def update
+    end
+
+    def destroy
+    end
+
+    private
+
+    def find_booking
+      @booking = Booking.find(params[:id])
+    end
+
+    def booking_params
+      params.require(:booking).permit(:user_id, :service_id, :start_datetime, :end_datetime)
+    end
   end
 
 end
