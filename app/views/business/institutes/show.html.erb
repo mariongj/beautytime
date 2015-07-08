@@ -18,8 +18,8 @@
 </div>
 
      <div class= "text-center">
-          <%= link_to "Ajouter une prestation",
-          new_institute_service_path(@institute),
+        <%= link_to "Ajouter une prestation",
+          new_business_institute_service_path(@institute),
           class: "btn btn-large btn-success" %>
       </div>
 
@@ -38,12 +38,12 @@
             <div class="col-xs-12 col-sm-3">
                  <ul>
                   <li class="list-inline">
-                     <%= link_to edit_institute_service_path(service.institute, service) do %>
+                     <%= link_to edit_business_institute_service_path(service.institute, service) do %>
                        <i class="fa fa-pencil"></i> Modifier la prestation
                        <% end %>
                   </li>
                   <li class="list-inline">
-                     <%= link_to institute_service_path(service.institute, service),
+                     <%= link_to business_institute_service_path(service.institute, service),
                           method: :delete,
                           data: { confirm: "Are you sure?" } do %>
                           <i class="fa fa-trash"></i> Supprimer la prestation

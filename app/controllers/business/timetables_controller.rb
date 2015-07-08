@@ -1,4 +1,7 @@
-class TimetablesController < ApplicationController
+module Business
+
+  class Business::TimetablesController < ApplicationController
+
   before_action :find_service, only: [:new, :create]
 
   def new
@@ -6,7 +9,7 @@ class TimetablesController < ApplicationController
   end
 
   def create
-
+    @institute = @service.institute
     @timetable = Timetable.new
 
     @timetable.monday_start_time = Time.new(2000,01,01,params[:timetable][:monday_start_time].split(":")[0].to_i+1,params[:timetable][:monday_start_time].split(":")[1].to_i,0)
@@ -25,10 +28,9 @@ class TimetablesController < ApplicationController
     @timetable.saturday_end_time = Time.new(2000,01,01,params[:timetable][:saturday_end_time].split(":")[0].to_i+1,params[:timetable][:saturday_end_time].split(":")[1].to_i,0)
     @timetable.sunday_end_time = Time.new(2000,01,01,params[:timetable][:sunday_end_time].split(":")[0].to_i+1,params[:timetable][:sunday_end_time].split(":")[1].to_i,0)
 
-
     @timetable.service = @service
     if @timetable.save
-      redirect_to institute_service_path(@service.institute, @service)
+      redirect_to business_institute_path(@institute)
     else
       render :new
     end
@@ -51,4 +53,6 @@ class TimetablesController < ApplicationController
   def timetable_params
     params.require(:timetable).permit(:service_id, :monday_start_time, :monday_end_time, :tuesday_start_time, :tuesday_end_time, :wednesday_start_time, :wednesday_end_time, :thursday_start_time, :thursday_end_time, :friday_start_time, :friday_end_time, :saturday_start_time, :saturday_end_time, :sunday_start_time, :sunday_end_time)
   end
+  end
+
 end
