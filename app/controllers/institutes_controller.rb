@@ -1,10 +1,9 @@
 class InstitutesController < ApplicationController
-<<<<<<< HEAD
-  before_action :find_institute, only: [:show]
-=======
+
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :find_institute, only: [ :show, :edit, :update, :destroy ]
->>>>>>> de1c0629cafaa6c7ccff535c7c58a4fd687c37ea
+  before_action :find_institute, only: [:show]
+
+
 
   def index
     @institutes = Institute.all
