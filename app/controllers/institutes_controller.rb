@@ -82,11 +82,15 @@ class InstitutesController < ApplicationController
   private
 
   def reviews_average(reviews)
-    reviews_stocked = []
-    reviews.each do |review|
-      reviews_stocked << review.rate
+    if reviews.size == 0
+      return 0
+    else
+      reviews_stocked = []
+      reviews.each do |review|
+        reviews_stocked << review.rate
+      end
+      return reviews_stocked.inject(:+) / reviews.size
     end
-    return reviews_stocked.inject(:+) / reviews.size
   end
 
   def find_institute
