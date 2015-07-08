@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   resources :reviews, only: [:index]
 
-  devise_for :users
+  devise_for :users,controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users, only: [:show, :edit, :update] do
     member do
       get 'bookings', to: "users#bookings"

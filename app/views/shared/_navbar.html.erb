@@ -18,6 +18,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li class="dropdown">
+            <%= image_tag current_user.picture, class: "img-avatar" %>
             <%= link_to "#", {class: "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-expanded" => "false"} do %>
               <%= image_tag (current_user.picture.present? ? current_user.picture : "penelope.jpg"), class: "img-avatar" %>
               Espace personnel <span class="caret"></span>
@@ -56,6 +57,9 @@
           </li>
           <li>
             <%= link_to t(".sign_in", default: "Sign in"), new_user_session_path %>
+          </li>
+          <li>
+            <%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook) %>
           </li>
         <% end %>
         <li>
