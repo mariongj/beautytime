@@ -37,7 +37,6 @@ class TimetablesController < ApplicationController
   end
 
   def update
-
     @timetable.update(timetable_params)
     redirect_to business_institute_path(@institute)
   end
