@@ -1,7 +1,7 @@
 module Business
 
   class BookingsController < ApplicationController
-    before_action :find_booking, only: [:edit, :update, :destroy]
+    before_action :find_booking, only: [:show, :edit, :update, :destroy]
 
     def index
       @service = Service.find(params[:service_id])
@@ -9,8 +9,7 @@ module Business
     end
 
     def show
-      @service = Service.find(params[:service_id]
-      @booking = current_user.bookings.find(params[:id])
+      @service = Service.find(params[:service_id])
     end
 
     def new
@@ -19,23 +18,25 @@ module Business
     end
 
     def create
-       @service = Service.find(params[:service_id])
-     @booking = current_user.institutes.services.bookings.new(params[:id])
-     @booking.service = @service
-     @date = params[:booking][:date]
-     @time = params[:booking][:time]
-     year = @date.split("-")[0].to_i
-     month = @date.split("-")[1].to_i
-     day = @date.split("-")[2].to_i
-     hour = @time.split(":")[0].to_i
-     min = @time.split(":")[1].to_i
-     @booking.start_datetime = DateTime.new(year, month, day, hour, min, 0)
-     @booking.end_datetime = @booking.start_datetime + @service.duration.minute
-     if @booking.save
-       redirect_to business_institute_path(current_user)
-     else
+      @service = current_user.services.find(params[:service_id])
+      @booking = @service.bookings.build(booking_params)
+
+      # @date = params[:booking][:date]
+      # @time = params[:booking][:time]
+      # year = @date.split("-")[0].to_i
+      # month = @date.split("-")[1].to_i
+      # day = @date.split("-")[2].to_i
+      # hour = @time.split(":")[0].to_i
+      # min = @time.split(":")[1].to_i
+
+      # @booking.start_datetime = DateTime.new(year, month, day, hour, min, 0)
+      @booking.end_datetime = @booking.start_datetime + @service.duration.minutes
+
+      if @booking.save
+       redirect_to business_institute_path(@service.institute)
+      else
        render :new
-     end
+      end
     end
 
     def edit
@@ -60,8 +61,10 @@ module Business
     end
 
     def booking_params
-      params.require(:booking).permit(:user_id, :service_id, :start_datetime, :end_datetime)
+      params.require(:booking).permit(:start_datetime)
     end
+
   end
+
 
 end

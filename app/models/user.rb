@@ -47,6 +47,7 @@
 
 class User < ActiveRecord::Base
   has_many :institutes
+  has_many :services, through: :institutes
   has_many :reviews
   has_many :bookings
 

@@ -21,7 +21,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <div>
-        <%= simple_form_for [@user, @institute], html: { multipart: true } do |f| %>
+        <%= simple_form_for [:business, @institute], html: { multipart: true } do |f| %>
           <%= f.input :name %>
           <%= f.input :description %>
           <%= f.input :address %>
@@ -34,7 +34,7 @@
         <% end %>
       </div>
     </div>
->>>>>>> de1c0629cafaa6c7ccff535c7c58a4fd687c37ea:app/views/institutes/new.html.erb
+
   </div>
 </div>
 
