@@ -4,7 +4,7 @@
 
 <div class="text-center">
   <%= link_to "Ajouter un nouvel institut",
-            new_institute_path,
+            new_business_institute_path,
             class: "btn btn-small btn-success text-center" %>
 </div>
 
@@ -28,7 +28,7 @@
         </p>
 
 
-        <%= link_to edit_institute_path(institute) do %>
+        <%= link_to edit_business_institute_path(institute) do %>
           <i class="fa fa-pencil"></i> Éditer mon institut
           <%end%>
 
@@ -36,7 +36,7 @@
           <br>
 
 
-         <%= link_to institute_path(institute),
+         <%= link_to business_institute_path(institute),
                  method: :delete,
                  data: { confirm: "Are you sure?" } do %>
                  <i class="fa fa-trash"></i> Supprimer mon institut
