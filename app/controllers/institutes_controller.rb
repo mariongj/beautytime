@@ -5,7 +5,6 @@ class InstitutesController < ApplicationController
 
   def index
     @institutes = Institute.all
-
     if params[:category].present?
       @institutes = @institutes.joins(:services).where(services: { category: params[:category] }).uniq
     end
@@ -18,7 +17,6 @@ class InstitutesController < ApplicationController
     elsif params[:city].present?
       @institutes = @institutes.where(city: params[:city])
     end
-
 
     @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
       if institute.latitude && institute.longitude
@@ -55,6 +53,13 @@ class InstitutesController < ApplicationController
       return reviews_stocked.inject(:+) / reviews.size
     end
   end
+
+  # def one_institute(institutes)
+  #   institutes.each do |institute|
+  #     return institute
+  # end
+
+
 
   def find_institute
     @institute = Institute.find(params[:id])
