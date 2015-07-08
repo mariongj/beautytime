@@ -3,10 +3,12 @@ class InstitutesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :find_institute, only: [:show]
 
-
-
   def index
     @institutes = Institute.all
+
+    if params[:category].present?
+      @institutes = @institutes.joins(:services).where(services: { category: params[:category] }).uniq
+    end
 
     latitude = params[:lat]
     longitude = params[:lng]
@@ -15,11 +17,6 @@ class InstitutesController < ApplicationController
       @institutes = @institutes.near([latitude, longitude], 5, units: :km)
     elsif params[:city].present?
       @institutes = @institutes.where(city: params[:city])
-    end
-
-
-    if params[:category].present?
-      @institutes = @institutes.joins(:services).where(services: { category: params[:category] })
     end
 
     @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
