@@ -6,8 +6,25 @@ class TimetablesController < ApplicationController
   end
 
   def create
-    raise
-    @timetable = Timetable.new(timetable_params)
+
+    @timetable = Timetable.new
+
+    @timetable.monday_start_time = Time.new(2000,01,01,params[:timetable][:monday_start_time].split(":")[0].to_i+1,params[:timetable][:monday_start_time].split(":")[1].to_i,0)
+    @timetable.tuesday_start_time = Time.new(2000,01,01,params[:timetable][:tuesday_start_time].split(":")[0].to_i+1,params[:timetable][:tuesday_start_time].split(":")[1].to_i,0)
+    @timetable.wednesday_start_time = Time.new(2000,01,01,params[:timetable][:wednesday_start_time].split(":")[0].to_i+1,params[:timetable][:wednesday_start_time].split(":")[1].to_i,0)
+    @timetable.thursday_start_time = Time.new(2000,01,01,params[:timetable][:thursday_start_time].split(":")[0].to_i+1,params[:timetable][:thursday_start_time].split(":")[1].to_i,0)
+    @timetable.friday_start_time = Time.new(2000,01,01,params[:timetable][:friday_start_time].split(":")[0].to_i+1,params[:timetable][:friday_start_time].split(":")[1].to_i,0)
+    @timetable.saturday_start_time = Time.new(2000,01,01,params[:timetable][:saturday_start_time].split(":")[0].to_i+1,params[:timetable][:saturday_start_time].split(":")[1].to_i,0)
+    @timetable.sunday_start_time = Time.new(2000,01,01,params[:timetable][:sunday_start_time].split(":")[0].to_i+1,params[:timetable][:sunday_start_time].split(":")[1].to_i,0)
+
+    @timetable.monday_end_time = Time.new(2000,01,01,params[:timetable][:monday_end_time].split(":")[0].to_i+1,params[:timetable][:monday_end_time].split(":")[1].to_i,0)
+    @timetable.tuesday_end_time = Time.new(2000,01,01,params[:timetable][:tuesday_end_time].split(":")[0].to_i+1,params[:timetable][:tuesday_end_time].split(":")[1].to_i,0)
+    @timetable.wednesday_end_time = Time.new(2000,01,01,params[:timetable][:wednesday_end_time].split(":")[0].to_i+1,params[:timetable][:wednesday_end_time].split(":")[1].to_i,0)
+    @timetable.thursday_end_time = Time.new(2000,01,01,params[:timetable][:thursday_end_time].split(":")[0].to_i+1,params[:timetable][:thursday_end_time].split(":")[1].to_i,0)
+    @timetable.friday_end_time = Time.new(2000,01,01,params[:timetable][:friday_end_time].split(":")[0].to_i+1,params[:timetable][:friday_end_time].split(":")[1].to_i,0)
+    @timetable.saturday_end_time = Time.new(2000,01,01,params[:timetable][:saturday_end_time].split(":")[0].to_i+1,params[:timetable][:saturday_end_time].split(":")[1].to_i,0)
+    @timetable.sunday_end_time = Time.new(2000,01,01,params[:timetable][:sunday_end_time].split(":")[0].to_i+1,params[:timetable][:sunday_end_time].split(":")[1].to_i,0)
+
     @timetable.service = @service
     if @timetable.save
       redirect_to institute_service_path(@service.institute, @service)

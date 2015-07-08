@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 
   def institutes
     @bookings = current_user.bookings
+    @my_institutes_uniques = @bookings.map { |booking| booking.service.institute }.uniq
   end
 
   private
