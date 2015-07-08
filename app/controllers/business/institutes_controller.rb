@@ -12,6 +12,7 @@ module Business
     end
 
     def show
+      @reviews = @institute.reviews
       @services = @institute.services
       @markers = Gmaps4rails.build_markers(@institute) do |institute, marker|
         marker.lat institute.latitude
