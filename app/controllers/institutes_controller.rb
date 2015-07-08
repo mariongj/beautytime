@@ -19,6 +19,7 @@ class InstitutesController < ApplicationController
       @institutes = @institutes.where(city: params[:city])
     end
 
+
     @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|
       if institute.latitude && institute.longitude
         marker.lat institute.latitude
