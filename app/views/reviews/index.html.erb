@@ -1,5 +1,5 @@
 <div class="title text-center">
-  <h1>MES AVIS</h1>
+  <h1 class="title-shadowed">Mes avis</h1>
 </div>
 
   <% if @reviews == [] %>
@@ -16,7 +16,7 @@
       <div class="col-xs-12 col-sm-6 col-md-3">
        <div class="institute">
           <div class="institute-body">
-           <h2><strong><%= link_to review.institute.name, institute_path(review.institute), class:"gold" %></strong></h2>
+           <h2><strong><%= link_to review.institute.name, institute_path(review.institute), id:"gold-hover-black"%></strong></h2>
            <h2><%=review.booking.service.category%></h2>
            <p>
             <% review.rate.times do %>

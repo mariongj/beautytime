@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="title text-center">
-  <h1>MES RÉSERVATIONS</h1>
+  <h1 class="title-shadowed">MES RÉSERVATIONS</h1>
 </div>
 
 <% @bookings.each do |booking| %>
@@ -11,38 +11,48 @@
   <div class="col-xs-12 col-sm-6 col-md-3">
 
    <div class="institute">
+    <div class="institute-body">
+      <h2 class="text-center"> <%=booking.service.title%></h2>
+       <p class="description text-center"><%= booking.service.description %></p>
+       <p class="description text-center"><%= booking.start_datetime.strftime("Le %d-%m-%Y à %H:%M") %></p>
+       <p class="description text-center"><strong><%= booking.service.price.to_s + '€' %></strong></p>
 
-       <h2> <%=booking.service.title%></h2>
-         <p class="description"><%= booking.service.description %></p>
-         <p class="description"><%= booking.start_datetime %></p>
-         <p class="description"><%= booking.service.price.to_s + '€' %></p>
-         <ul>
-           <li class="list-inline">
-             <%= link_to edit_service_booking_path(booking.service, booking) do %>
-               <i class="fa fa-pencil"></i> Éditer ma réservation
-               <% end %>
-           </li>
-           <li class="list-inline">
-             <%= link_to service_booking_path(booking.service, booking),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } do %>
-                  <i class="fa fa-trash"></i> Supprimer ma réservation
-                <% end %>
-           </li>
-         </ul>
-         <%= link_to new_booking_review_path(booking) do %>
+        <% if booking.start_datetime >= DateTime.now %>
+
+          <div class="optionnal-actions">
+          <%= link_to edit_service_booking_path(booking.service, booking), class:"link-color-hover" do %>
+           <i class="fa fa-pencil"></i>Éditer
+          <% end %>
+          </div>
+
+          <div class="optionnal-actions">
+          <%= link_to service_booking_path(booking.service, booking), class:"link-color-hover",
+              method: :delete,
+              data: { confirm: "Are you sure?" } do %>
+            <i class="fa fa-trash"></i> Supprimer
+          <% end %>
+          </div>
+
+        <% else %>
+
+          <div class="optionnal-actions">
+          <%= link_to new_booking_review_path(booking), class:"link-color-hover" do %>
            <i class="fa fa-star"></i> Laisser un commentaire
-         <% end %>
+          <% end %>
+          </div>
 
-         <br>
+        <% end %>
 
          <div class ="text-center">
           <%= link_to "Profil de l'institut",
           institute_path,
-          class: "btn btn-xsmall btn-primary" %>
+          class: "btn-black" %>
         </div>
+      </div>
      </div>
    </div>
   </div>
 
 <%end%>
+
+
