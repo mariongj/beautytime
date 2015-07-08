@@ -14,12 +14,19 @@ module Business
 
     def new
       @service = Service.find(params[:service_id])
+      @timetable = Timetable.where({ service_id: params[:service_id] })
+      @start_time = [@timetable[0].monday_start_time, @timetable[0].monday_end_time, @timetable[0].tuesday_start_time, @timetable[0].tuesday_end_time, @timetable[0].wednesday_start_time, @timetable[0].wednesday_end_time, @timetable[0].thursday_start_time, @timetable[0].thursday_end_time, @timetable[0].friday_start_time, @timetable[0].friday_end_time, @timetable[0].saturday_start_time, @timetable[0].saturday_end_time, @timetable[0].sunday_start_time, @timetable[0].sunday_end_time].min
+      @end_time = [@timetable[0].monday_start_time, @timetable[0].monday_end_time, @timetable[0].tuesday_start_time, @timetable[0].tuesday_end_time, @timetable[0].wednesday_start_time, @timetable[0].wednesday_end_time, @timetable[0].thursday_start_time, @timetable[0].thursday_end_time, @timetable[0].friday_start_time, @timetable[0].friday_end_time, @timetable[0].saturday_start_time, @timetable[0].saturday_end_time, @timetable[0].sunday_start_time, @timetable[0].sunday_end_time].max
+      @search_date = params[:search_date] ? params[:search_date].to_date : Date.today
+
+      @institute = @service.institute
       @booking = Booking.new
     end
 
     def create
       @service = current_user.services.find(params[:service_id])
       @booking = @service.bookings.build(booking_params)
+
 
       # @date = params[:booking][:date]
       # @time = params[:booking][:time]
