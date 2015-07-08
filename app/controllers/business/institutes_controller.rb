@@ -39,7 +39,7 @@ module Business
 
       def update
         @institute.update(institute_params)
-        redirect_to business_institute_path(@institute)
+        redirect_to business_institute_path
       end
 
       def destroy
