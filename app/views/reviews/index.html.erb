@@ -2,21 +2,30 @@
   <h1>MES AVIS</h1>
 </div>
 
-<% @reviews.each do |review| %>
-
-  <div class="col-xs-12 col-sm-6 col-md-3">
-
-   <div class="institute">
-      <div class="institute-body">
-       <h2><strong><%= link_to review.institute.name, institute_path(review.institute), class:"gold" %></strong></h2>
-       <h2><%=review.booking.service.category%></h2>
-       <p>
-        <% review.rate.times do %>
-        <i class="fa fa-star gold"></i>
-        <% end %>
-       </p>
-       <p>"<%= review.comments %>."</p>
+  <% if @reviews == [] %>
+    <div class="padding-top-bottom">
+      <p class="text-center"><%= "Vous n'avez pas encore laissé de commentaires." %></p>
+      <p class="text-center"><%= "Dépéchez-vous de prendre soin de vous." %></p>
+      <p class="text-center"><%= "Réservez, appréciez et commentez!" %></p>
+    </div>
+    <div class="text-center">
+      <%= link_to "Réserver", root_path, id:"back-to-book" %>
+    </div>
+  <% else %>
+    <% @reviews.each do |review| %>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+       <div class="institute">
+          <div class="institute-body">
+           <h2><strong><%= link_to review.institute.name, institute_path(review.institute), class:"gold" %></strong></h2>
+           <h2><%=review.booking.service.category%></h2>
+           <p>
+            <% review.rate.times do %>
+            <i class="fa fa-star gold"></i>
+            <% end %>
+           </p>
+           <p>"<%= review.comments %>."</p>
+          </div>
+       </div>
       </div>
-   </div>
-  </div>
-<% end %>
+    <% end %>
+  <% end %>

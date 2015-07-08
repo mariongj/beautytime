@@ -15,7 +15,7 @@
         <div class="row">
           <%= form_tag(institutes_path, method: :get, class: "form-inline") do %>
             <%= select_tag :category, options_for_select(@categories, @categories.first), prompt: "Votre soin beauté", class: "form-control" %>
-            <input type="text" data-provide='datepicker' placeholder= <%= Date.current %> class="form-control" >
+            <!-- <input type="text" data-provide='datepicker' placeholder= <%= Date.current %> class="form-control" > -->
             <div id="city-picker">
               <%= text_field_tag :city, nil, placeholder: "Ville", class: "form-control typeahead" %>
             </div>
@@ -153,21 +153,6 @@
 
   </script>
 <% end %>
-
-
-<div class="pro-access">
-  <div class="white-card">
-    <h2>Espace pro</h2>
-    <br>
-    <%= link_to "ACCES ESPACE PRO", new_user_session_path, class: "btn btn-gold" %>
-    <div class="border-top" style="padding-top: 50px; margin: 50px;">
-      <i>Inscrivez votre salon sur BeautyTime et bénéficiez de notre logiciel de gestion de rendez-vous en ligne, imaginé avec nos partenaires beauté afin de répondre aux réels besoins d’un institut.</i>
-      <br>
-      <div class="link"><a href="#"><i>Plus d'infos </i><i class="fa fa-long-arrow-right"></i></a></div>
-      <%= link_to "INSCRIVEZ VOTRE INSTITUT", new_business_institute_path, class: "btn btn-black" %>
-    </div>
-  </div>
-</div>
 
 
 
