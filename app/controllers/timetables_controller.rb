@@ -25,6 +25,7 @@ class TimetablesController < ApplicationController
     @timetable.saturday_end_time = Time.new(2000,01,01,params[:timetable][:saturday_end_time].split(":")[0].to_i+1,params[:timetable][:saturday_end_time].split(":")[1].to_i,0)
     @timetable.sunday_end_time = Time.new(2000,01,01,params[:timetable][:sunday_end_time].split(":")[0].to_i+1,params[:timetable][:sunday_end_time].split(":")[1].to_i,0)
 
+
     @timetable.service = @service
     if @timetable.save
       redirect_to institute_service_path(@service.institute, @service)
