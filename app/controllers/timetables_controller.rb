@@ -6,7 +6,6 @@ class TimetablesController < ApplicationController
   end
 
   def create
-    raise
     @timetable = Timetable.new(timetable_params)
     @timetable.service = @service
     if @timetable.save
