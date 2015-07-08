@@ -1,0 +1,87 @@
+<!-- <div class="text-center">
+  <input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/> <b>€ 1000</b>
+</div> -->
+
+
+
+<div class="container">
+  <div class="white-card">
+    <h3><%= @service.institute.name %>: Horaires pour <%= @service.title %></h3>
+
+
+    <%= simple_form_for [:business, @service, @timetable] do |f| %>
+
+      <% %w(monday tuesday wednesday thursday friday saturday sunday).each do |day| %>
+
+        <div class="day-picker is-hidden">
+          <div class="row">
+            <div class="col-xs-3">
+              <%= day.upcase %>
+            </div>
+            <div class="col-xs-6">
+              <input class="<%= "slider_#{day}"%>" type="text" value="" data-slider-min="6" data-slider-max="22" data-slider-step="0.5" data-slider-value="[10,19]"/>
+              <input type="hidden" name="<%= "timetable[#{day}_start_time]"%>" class="<%= "slider_#{day}_min_input"%>" value="10">
+              <input type="hidden" name="<%= "timetable[#{day}_end_time]"%>" class="<%= "slider_#{day}_max_input"%>" value="10">
+            </div>
+
+            <div class="col-xs-3 text-center">
+              <div class="day-hours">
+                <i class="fa fa-clock-o"></i>
+                <span class="<%= "slider_#{day}_min"%>">10:00</span>-<span class="<%= "slider_#{day}_max"%>">19:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+
+      <%= f.submit "Enregistrer", class: "btn btn-black" %>
+
+    <% end %>
+  </div>
+</div>
+
+
+<%= content_for(:after_js) do %>
+  <script>
+    $(function(){
+
+      var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+
+      $.each(days, function(index, day){
+
+        $(".slider" + "_" + day).slider(function(){
+        });
+
+        $(document).on('ready', function(){
+          $('.is-hidden').removeClass('is-hidden')
+        })
+
+        $(".slider").on('click', function(slideEvt){
+           var min = $(this).parents('.day-picker').find('.day-hours span:first-of-type').text();
+           var max = $(this).parents('.day-picker').find('.day-hours span:last-of-type').text();
+           $('.tooltip .tooltip-inner').html(min + " - " + max)
+        })
+
+
+        $(".slider").on('mouseover', function(slideEvt){
+           var min = $(this).parents('.day-picker').find('.day-hours span:first-of-type').text();
+           var max = $(this).parents('.day-picker').find('.day-hours span:last-of-type').text();
+           $('.tooltip .tooltip-inner').html(min + " - " + max)
+        })
+
+        $(".slider" + "_" + day).on("slide", function(slideEvt) {
+
+          $('.tooltip .tooltip-inner').html(String(slideEvt.value[0]).replace(".5", ":30") + " - " + String(slideEvt.value[1]).replace(".5", ":30"))
+
+          $(".slider" + "_" + day + "_min").text(String(slideEvt.value[0]).replace(".5", ":30") );
+          $(".slider" + "_" + day + "_min_input").val(String(slideEvt.value[0]).replace(".5", ":30") );
+          $(".slider" + "_" + day + "_max").text(String(slideEvt.value[1]).replace(".5", ":30") );
+          $(".slider" + "_" + day + "_max_input").val(String(slideEvt.value[1]).replace(".5", ":30") );
+        });
+      });
+
+
+    });
+  </script>
+<% end %>
