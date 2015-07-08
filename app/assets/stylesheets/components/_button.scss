@@ -21,6 +21,26 @@
   }
 }
 
+
+.btn-around-me{
+  padding: 2px 150px;
+  color: black;
+  background-color: $gold;
+  line-height: 40px;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 2px;
+  font-weight: normal;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  &:hover{
+    color: white;
+  }
+}
+
+
+
+
 .btn-white {
   color: black;
   background-color: white;
@@ -78,7 +98,12 @@
 }
 
 .margin-top{
-  margin-top:80px;
+  margin-top:65px;
+}
+
+
+.margin-top-25{
+  margin-top: 25px
 }
 
 .link {
