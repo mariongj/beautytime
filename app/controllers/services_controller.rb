@@ -3,8 +3,8 @@ class ServicesController < ApplicationController
   before_action :find_timetable, only: [ :show, :edit, :update, :destroy ]
 
   def show
-    @start_time = "10:00".to_time
-    @end_time = "19:00".to_time
+    @start_time = [@timetable[0].monday_start_time, @timetable[0].monday_end_time, @timetable[0].tuesday_start_time, @timetable[0].tuesday_end_time, @timetable[0].wednesday_start_time, @timetable[0].wednesday_end_time, @timetable[0].thursday_start_time, @timetable[0].thursday_end_time, @timetable[0].friday_start_time, @timetable[0].friday_end_time, @timetable[0].saturday_start_time, @timetable[0].saturday_end_time, @timetable[0].sunday_start_time, @timetable[0].sunday_end_time].min
+    @end_time = [@timetable[0].monday_start_time, @timetable[0].monday_end_time, @timetable[0].tuesday_start_time, @timetable[0].tuesday_end_time, @timetable[0].wednesday_start_time, @timetable[0].wednesday_end_time, @timetable[0].thursday_start_time, @timetable[0].thursday_end_time, @timetable[0].friday_start_time, @timetable[0].friday_end_time, @timetable[0].saturday_start_time, @timetable[0].saturday_end_time, @timetable[0].sunday_start_time, @timetable[0].sunday_end_time].max
 
     @search_date = params[:search_date] ? params[:search_date].to_date : Date.today
 
@@ -24,26 +24,24 @@ class ServicesController < ApplicationController
     @institute = Institute.find(params[:institute_id])
     @service = @institute.services.new(service_params)
     if @service.save
-      redirect_to new_service_timetable_path(@service)
+      redirect_to institute_path(@institute)
     else
       render :new
     end
   end
 
   def edit
-    @service = Service.find(params[:id])
-    @institute = Institute.find(params[:institute_id])
+    @service
   end
 
   def update
     @service.update(service_params)
-    @institute = Institute.find(params[:institute_id])
-    redirect_to business_institute_path(@institute)
+    redirect_to service_path(@service)
   end
 
   def destroy
     @service.destroy
-    redirect_to :back
+    redirect_to services_path
   end
 
   private
@@ -53,15 +51,11 @@ class ServicesController < ApplicationController
   end
 
   def find_timetable
-    @timetable = Timetable.find(params[:id])
+    @timetable = Timetable.where({ service_id: params[:id] })
   end
 
   def service_params
     params.require(:service).permit(:institute_id, :title, :description, :price, :duration, :category)
   end
-
-  # def service__params
-  #    params.require(:service).permit(:service_id, :institute_id, :title, :description, :price, :duration, :category, :date, :time)
-  # end
 
 end
