@@ -7,12 +7,19 @@
 
 
 .institute-infos{
-  position: absolute;
-  top: 90px;
-  right: 370px;
+  text-align: center;
   color: white;
 }
 
 .gold{
   color:#F4CF52;
+}
+
+
+#gold-hover-black{
+  color:#F4CF52;
+  font-weight: 500;
+  &:hover {
+    color: black;
+  }
 }

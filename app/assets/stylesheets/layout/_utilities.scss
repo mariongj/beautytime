@@ -58,3 +58,21 @@
   background: $purple;
   color: white;
 }
+
+.title-shadowed{
+  text-shadow: 1px 1px #111111;
+  letter-spacing: 3px;
+}
+
+.link-color-hover{
+  color:black;
+  &:hover{
+    color:$gold;
+  }
+}
+
+.optionnal-actions{
+  margin: 10px;
+  text-align: center;
+}
+

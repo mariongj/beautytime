@@ -19,7 +19,7 @@ class InstitutesController < ApplicationController
 
 
     if params[:category].present?
-      @institutes = @institutes.joins(:services).where(services: { category: params[:category] })
+      @institutes = @institutes.joins(:services).where(services: { category: params[:category] }).uniq
     end
 
     @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|

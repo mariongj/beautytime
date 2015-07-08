@@ -2,33 +2,27 @@
 <% content_for :title do %>
   L'institut <%= @institute.name %>
 <% end %>
-<div class="banner-institute" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; height:600px; position:relative" %>'>
+<div class="banner-institute text-center" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; height:400px" %>'>
 
 <!-- <div class="banner-institute" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; position:relative" %>'>
  -->
 
-
-
+  <div class="text-center institute-infos">
+    <h1><%= @institute.name %></h1>
+    <p><%= @institute.description %></p>
+    <p><%= @institute.address %></p>
+    <p><%= @institute.zipcode %>, <%= @institute.city %></p>
+    <p>
+      <% @reviews_average.times do %>
+        <i class="fa fa-star gold"></i>
+      <% end %>
+    </p>
+  </div>
 </div>
 
-
-
-
-<div class="text-center institute-infos">
-  <h1><%= @institute.name %></h1>
-  <p><%= @institute.description %></p>
-  <p><%= @institute.address %></p>
-  <p><%= @institute.zipcode %>, <%= @institute.city %></p>
-  <p>
-    <% @reviews_average.times do %>
-      <i class="fa fa-star gold"></i>
-    <% end %>
-  </p>
-</div>
 
 
 <ul class="unstyled">
-  <br>
     <% @services.each do |service|  %>
       <li class='white-card-list'>
         <div class="container">
@@ -283,7 +277,7 @@
 <% end %>
 
 <div class="text-center">
-  <h1>Commentaires</h1>
+  <h1 class="title-shadowed">Commentaires</h1>
 </div>
 
 
@@ -314,4 +308,4 @@
 </ul>
 
 
-<div class="text-center"><%= link_to "Retour", institutes_path %></div>
+<div class="text-center"><%= link_to "Retour", institutes_path, class:"btn-black", id:"return-btn" %></div>
