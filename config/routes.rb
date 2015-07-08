@@ -20,11 +20,11 @@ Rails.application.routes.draw do
     resources :services, only: [] do
       resources :bookings, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     end
+
     resources :institutes do
       resources :services, only: [:index, :show]
     end
   end
-
 
   resources :bookings, only: [:update, :edit, :destroy] do
     resources :reviews, only: [:new, :create]
