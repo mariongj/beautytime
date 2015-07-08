@@ -6,7 +6,6 @@
   <h1 class="title-shadowed">MES INSTITUTS</h1>
 </div>
 
-
 <% @my_institutes_uniques.each do |institute| %>
 
   <div class="col-xs-12 col-sm-6 col-md-3">
@@ -20,9 +19,9 @@
           <%= institute.zipcode %>
           <%= institute.city %>
           </p>
-          <%= link_to "Book",
-              institute_path,
-              class: "btn-black" %>
+          <%= link_to "Prendre un nouveau rendez-vous",
+              institute_path(institute),
+              class: "btn btn-black" %>
       </div>
     </div>
   </div>
