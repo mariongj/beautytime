@@ -14,17 +14,21 @@
     <p>Né le <%= @user.birthdate %></p>
 
     <div class="container text-center">
-      <div class="btn-gold">
+      <div class="btn btn-black">
         <%= link_to "Modifiez votre profil", edit_user_path(@user) %>
       </div>
     </div>
+
   <% else %>
     <p>Vous n'avez pas encore complété votre profil.</p>
-
     <div class="container text-center">
-      <div class="btn-gold">
+      <div class="btn btn-black">
         <%= link_to "Compléter mon profil", edit_user_path(@user) %>
       </div>
     </div>
   <% end %>
+</div>
+
+<div class="text-center">
+  <%= link_to "Retour vers la recherche", root_path, id:"back-to-book" %>
 </div>
