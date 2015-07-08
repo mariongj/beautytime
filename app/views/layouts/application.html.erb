@@ -13,7 +13,12 @@
 
 <body class="Site">
   <%= render "shared/flashes" %>
-  <%= render "shared/navbar" %>
+
+  <% if request.original_url.include? "business" %>
+    <%= render "shared/business_navbar" %>
+  <% else %>
+    <%= render "shared/navbar" %>
+  <% end %>
 
 <main class="Site-content">
   <%= yield %>

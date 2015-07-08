@@ -1,4 +1,3 @@
-
 <% content_for :title do %>
   L'institut <%= @institute.name %>
 <% end %>
@@ -20,34 +19,24 @@
   </div>
 </div>
 
-
 <ul class="unstyled">
-    <% @services.each do |service|  %>
-      <li class='white-card-list'>
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
-              <h4><%= service.title %></h4>
-            </div>
-            <div class="col-xs-12 col-sm-3">
-              <div><%= service.price %>€ - <%= service.duration %>min</div>
-            </div>
-            <div class="col-xs-12 col-sm-3">
-              <div><%= link_to "Voir disponibilités", institute_service_path(@institute, service) %></div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <div>
-                <%= service.description %>
-              </div>
-            </div>
-          </div>
+  <% @services.each do |service|  %>
+    <div class="container">
+      <div class="white-card row">
+        <div class="col-xs-12 col-sm-4">
+          <h4 class="center-vertically"><%= service.title %></h4>
         </div>
-      </li>
-    <% end %>
+        <div class="col-xs-12 col-sm-4">
+          <p><%= service.price %>€ - <%= service.duration %>min</p>
+          <p><%= service.description %></p>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <%= link_to "Prendre rendez-vous", institute_service_path(@institute, service), class: "btn btn-black" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </ul>
-
 
 <div id="map" style="width: 100%; height: 200px;"></div>
  <% content_for(:after_js) do %>
@@ -278,7 +267,6 @@
 <div class="text-center">
   <h1 class="title-shadowed">Commentaires</h1>
 </div>
-
 
 <ul class="unstyled unpadded">
   <br>

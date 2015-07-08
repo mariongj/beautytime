@@ -8,8 +8,6 @@
             class: "btn btn-small btn-success text-center" %>
 </div>
 
-
-
 <% @institutes.each do |institute| %>
 
 <div class="col-xs-12 col-sm-6 col-md-3">
@@ -24,15 +22,7 @@
         <p class="description">
           <%= institute.zipcode %>
           <%= institute.city %>
-
         </p>
-
-
-        <%= link_to edit_business_institute_path(institute) do %>
-          <i class="fa fa-pencil"></i> Éditer mon institut
-          <%end%>
-
-
           <br>
 
 <!--

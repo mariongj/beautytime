@@ -37,8 +37,9 @@ module Business
   end
 
   def update
+    @institute = Institute.find(params[:institute_id])
     @service.update(service_params)
-    redirect_to business_institute(@institute)
+    redirect_to business_institute_path(@institute)
   end
 
   def destroy
@@ -54,7 +55,7 @@ module Business
   end
 
   def find_timetable
-    @timetable = Timetable.where({ service_id: params[:id] })
+    @timetable = @service.timetables[0]
   end
 
   def service_params

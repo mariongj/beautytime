@@ -1,9 +1,11 @@
 <%= content_for(:title) do %>
-  Nos prestations
+  <%= @service.title %>
 <% end %>
 
-<h1 class="text-center"><%= @institute.name %>: <%= @service.title %></h1>
-<br>
+<div class="col-xs-12">
+  <h2 class="text-center"><%= @institute.name %>: <%= @service.title %></h2>
+  <p class="text-center"><%= @service.duration %> minutes - <%= @service.price %>€</p>
+</div>
 
 <div class="container">
   <div class="row">
@@ -17,6 +19,7 @@
           <p>Cliquez sur l'horaire qui vous convient:</p>
           <br>
           <%= monday.strftime("%B") %> <%= monday.year %>
+          <br>
         </div>
 
         <% slots = (@end_time - @start_time)/(60*30) %>
@@ -53,44 +56,52 @@
                   <% dh = (d + h.seconds_since_midnight.seconds).to_datetime %>
                   <% available = true %>
 
-                  <% if dh <= Time.now %>
+                  <% if dh > Time.now %>
+                    <% if dh.strftime("%A") == "Monday" %>
+                      <% if dh.seconds_since_midnight.seconds < @timetable[0].monday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].monday_end_time.seconds_since_midnight.seconds %>
+                        <% available = false %>
+                        <p>--</p>
+                      <% end %>
+                    <% end %>
+                    <% if dh.strftime("%A") == "Tuesday" %>
+                      <% if dh.seconds_since_midnight.seconds < @timetable[0].tuesday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].tuesday_end_time.seconds_since_midnight.seconds %>
+                        <% available = false %>
+                        <p>--</p>
+                      <% end %>
+                    <% end %>
+                    <% if dh.strftime("%A") == "Wednesday" %>
+                      <% if dh.seconds_since_midnight.seconds < @timetable[0].wednesday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].wednesday_end_time.seconds_since_midnight.seconds %>
+                        <% available = false %>
+                        <p>--</p>
+                      <% end %>
+                    <% end %>
+                    <% if dh.strftime("%A") == "Thursday" %>
+                      <% if dh.seconds_since_midnight.seconds < @timetable[0].thursday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].thursday_end_time.seconds_since_midnight.seconds %>
+                        <% available = false %>
+                        <p>--</p>
+                      <% end %>
+                    <% end %>
+                    <% if dh.strftime("%A") == "Friday" %>
+                      <% if dh.seconds_since_midnight.seconds < @timetable[0].friday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].friday_end_time.seconds_since_midnight.seconds %>
+                        <% available = false %>
+                        <p>--</p>
+                      <% end %>
+                    <% end %>
+                    <% if dh.strftime("%A") == "Saturday" %>
+                      <% if dh.seconds_since_midnight.seconds < @timetable[0].saturday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].saturday_end_time.seconds_since_midnight.seconds %>
+                        <% available = false %>
+                        <p>--</p>
+                      <% end %>
+                    <% end %>
+                    <% if dh.strftime("%A") == "Sunday" %>
+                      <% if dh.seconds_since_midnight.seconds < @timetable[0].sunday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].sunday_end_time.seconds_since_midnight.seconds %>
+                        <% available = false %>
+                        <p>--</p>
+                      <% end %>
+                    <% end %>
+                  <% else %>
                     <% available = false %>
-                  <% end %>
-
-                  <% if dh.strftime("%A") == "Monday" %>
-                    <% if dh.seconds_since_midnight.seconds < @timetable[0].monday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].monday_end_time.seconds_since_midnight.seconds %>
-                      <% available = false %>
-                    <% end %>
-                  <% end %>
-                  <% if dh.strftime("%A") == "Tuesday" %>
-                    <% if dh.seconds_since_midnight.seconds < @timetable[0].tuesday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].tuesday_end_time.seconds_since_midnight.seconds %>
-                      <% available = false %>
-                    <% end %>
-                  <% end %>
-                  <% if dh.strftime("%A") == "Wednesday" %>
-                    <% if dh.seconds_since_midnight.seconds < @timetable[0].wednesday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].wednesday_end_time.seconds_since_midnight.seconds %>
-                      <% available = false %>
-                    <% end %>
-                  <% end %>
-                  <% if dh.strftime("%A") == "Thursday" %>
-                    <% if dh.seconds_since_midnight.seconds < @timetable[0].thursday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].thursday_end_time.seconds_since_midnight.seconds %>
-                      <% available = false %>
-                    <% end %>
-                  <% end %>
-                  <% if dh.strftime("%A") == "Friday" %>
-                    <% if dh.seconds_since_midnight.seconds < @timetable[0].friday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].friday_end_time.seconds_since_midnight.seconds %>
-                      <% available = false %>
-                    <% end %>
-                  <% end %>
-                  <% if dh.strftime("%A") == "Saturday" %>
-                    <% if dh.seconds_since_midnight.seconds < @timetable[0].saturday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].saturday_end_time.seconds_since_midnight.seconds %>
-                      <% available = false %>
-                    <% end %>
-                  <% end %>
-                  <% if dh.strftime("%A") == "Sunday" %>
-                    <% if dh.seconds_since_midnight.seconds < @timetable[0].sunday_start_time.seconds_since_midnight.seconds || dh.seconds_since_midnight.seconds >= @timetable[0].sunday_end_time.seconds_since_midnight.seconds %>
-                      <% available = false %>
-                    <% end %>
+                    <p>-</p>
                   <% end %>
 
                   <% @service.bookings.each do |b| %>
@@ -136,8 +147,6 @@
         </div>
       </div>
     <% end %>
-
-
   </div>
 </div>
 

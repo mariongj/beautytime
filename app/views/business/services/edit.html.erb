@@ -1,0 +1,12 @@
+<div>
+  <%= simple_form_for [:business, @institute, @service] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.input :duration %>
+    <%= f.input :category %>
+    <%= f.submit "Modifier votre prestation", class: "btn btn-black" %>
+    <%= link_to "Annuler", :back %>
+    <%= link_to "Modifier les horaires d'ouverture'", edit_business_service_timetable_path(@service, @timetable), class: "btn btn-gold" %>
+  <% end %>
+</div>
