@@ -23,7 +23,10 @@
           <%= institute.zipcode %>
           <%= institute.city %>
         </p>
+       <p> <%= institute.bookings.count %> <%= link_to "Réservations", business_institute_bookings_path(institute) %></p>
           <br>
+
+
 
 <!--
          <%= link_to business_institute_path(institute),

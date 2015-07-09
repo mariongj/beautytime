@@ -29,6 +29,7 @@ class BookingsController < ApplicationController
      @booking.start_datetime = DateTime.new(year, month, day, hour, min, 0)
      @booking.end_datetime = @booking.start_datetime + @service.duration.minute
      if @booking.save
+        flash[:notice] = "Votre commande a bien été prise en compte."
        redirect_to bookings_user_path(current_user)
      else
        render :new

@@ -76,3 +76,15 @@
   text-align: center;
 }
 
+
+.hover-gold{
+  &:hover{
+    color:$gold;
+  }
+}
+
+.form-control-full {
+  width: 100% !important;
+  margin-right: 5px;
+  margin-left: 5px;
+}

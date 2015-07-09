@@ -18,12 +18,13 @@ Rails.application.routes.draw do
 
   namespace :business do
     resources :services, only: [] do
-      resources :bookings, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+      resources :bookings, only: [:show, :new, :create, :edit, :update, :destroy]
       resources :timetables, only: [:new, :create, :edit, :update]
     end
 
     resources :institutes do
       resources :services, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+      resources :bookings, only: [:index]
     end
   end
 

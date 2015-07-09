@@ -40,12 +40,37 @@
   font-weight: normal;
   font-size: 10px;
   letter-spacing: 1.5px;
+
+  @media (max-width: 500px) {
+    padding: 0 10px;
+  }
+
   &:hover{
     color: white;
   }
 }
 
+#modify{
+  padding: 2px 150px;
+  color: black;
+  background-color: $gold;
+  line-height: 40px;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-top: 40px;
+  border-radius: 2px;
+  font-weight: normal;
+  font-size: 10px;
+  letter-spacing: 1.5px;
 
+  @media (max-width: 500px) {
+    padding: 0 10px;
+  }
+
+  &:hover{
+    color: white;
+  }
+}
 
 
 .btn-white {
@@ -112,6 +137,13 @@
 .margin-top-25{
   margin-top: 25px
 }
+
+
+.margin-top-40{
+  margin-top: 40px;
+}
+
+
 
 .link {
   color: $gray-light;

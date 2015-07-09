@@ -1,9 +1,15 @@
-<h1 class="text-center">Modifiez votre profil</h1>
-<%= link_to "Retour", :back %>
+<div class="margin-top-and-down">
+  <h1 class="text-center title-shadowed">Modifiez votre profil</h1>
+  <h3 class="text-center"><i class="fa fa-pencil"></i></h3>
+</div>
+
+<!-- class="padding-top-bottom" -->
+
+
 <div class="container">
   <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-      <%= simple_form_for(@user, url: user_path, html: { multipart: true }) do |f| %>
+    <div class="col-xs-8 col-xs-offset-2 text-center">
+      <%= simple_form_for(@user, url: user_path, defaults: { input_html: { class: 'padding-top-bottom-form' } }, html: { multipart: true }) do |f| %>
         <%= f.input :first_name %>
         <%= f.input :last_name %>
         <!-- GENDER -->
@@ -15,9 +21,13 @@
         <%= f.label :picture %>
         <%= f.file_field :picture %>
 
-
-        <%= f.button :submit, class: "btn-primary" %>
+        <%= f.button :submit, id:"modify" %>
       <% end %>
     </div>
   </div>
+
+  <div class="text-center">
+    <%= link_to "Retour", :back, class:"btn-black", id:"return-btn" %>
+  </div>
+
 </div>
