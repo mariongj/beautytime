@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def bookings
-    @bookings = current_user.bookings
+    @bookings = current_user.bookings.order(start_datetime: :desc)
   end
 
   def institutes
