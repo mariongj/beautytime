@@ -31,6 +31,7 @@ module Business
       @institute.validated = 0
 
       if @institute.save
+        flash[:notice] = "Votre institut est désormais bien enregistré."
         redirect_to new_business_institute_service_path(@institute)
       else
         render :new

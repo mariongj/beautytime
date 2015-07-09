@@ -48,11 +48,23 @@
             <p class="text-center"><%= @institutes.first.zipcode %> <%= @institutes.first.city %></p>
 
             <div class="footer">
-              <i><%= link_to "Détails", institute_path(@institutes.first) %></i>  <i class="fa fa-long-arrow-right"></i>
+              <div class="hover-gold">
+                <%= link_to institute_path(@institutes.first) do %>
+                  <em>Détails</em> <i class="fa fa-long-arrow-right"></i>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+
+
+
+
+
+
+
 
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="institute">

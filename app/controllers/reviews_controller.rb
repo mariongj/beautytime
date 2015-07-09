@@ -15,6 +15,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     @review.institute = @booking.service.institute
     if @review.save
+      flash[:notice] = "Votre commentaire a bien été enregistré."
       redirect_to bookings_user_path(current_user)
     else
       render :new
