@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  resources :users, only: [:show, :edit, :update] do
+    member do
+      get 'bookings', to: "users#bookings"
+      get 'institutes', to: "users#institutes"
+    end
+  end
+
   root to: "pages#home"
 
   resources :institutes, only: [:index, :show] do
@@ -9,7 +18,7 @@ Rails.application.routes.draw do
     # member do                             # member => institute id in URL
     #   get 'business', to: "institutes#business"  # InstitutesController#business
     # end
-  end
+    end
 
   resources :services, only: [] do
     resources :bookings, only: [:index, :show, :new, :create, :edit, :update, :destroy]
@@ -34,11 +43,5 @@ Rails.application.routes.draw do
 
   resources :reviews, only: [:index]
 
-  devise_for :users
-  resources :users, only: [:show, :edit, :update] do
-    member do
-      get 'bookings', to: "users#bookings"
-      get 'institutes', to: "users#institutes"
-    end
-  end
+
 end
