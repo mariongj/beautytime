@@ -45,7 +45,8 @@ module Business
 
       if @booking.save
         flash[:notice] = "La commande a bien été enregistrée."
-       redirect_to business_institute_path(@service.institute)
+       redirect_to business_institute_bookings_path(@service.institute)
+
       else
        render :new
       end
