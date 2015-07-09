@@ -51,22 +51,22 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ActiveRecord::Base
+   # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise  :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :trackable, :validatable,
+          :omniauthable, :omniauth_providers => [ :facebook ]
+
   has_many :institutes
   has_many :services, through: :institutes
   has_many :reviews
   has_many :bookings
 
-  has_attached_file :picture,
+  has_attached_file :avatar,
      styles: { medium: "300x300>", thumb: "100x100>" }
 
    validates_attachment_content_type :picture,
      content_type: /\Aimage\/.*\z/
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise  :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable,
-          :omniauthable, omniauth_providers: [:facebook]
 
 
   validates :first_name, presence: true, on: :update
@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
       user.name = auth.info.name
-      user.picture = auth.info.image
+      user.avatar = process_uri(auth.info.image) if auth.info.image?
       user.token = auth.credentials.token
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
