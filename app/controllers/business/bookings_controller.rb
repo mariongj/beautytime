@@ -44,6 +44,7 @@ module Business
       @booking.end_datetime = @booking.start_datetime + @service.duration.minutes
 
       if @booking.save
+        flash[:notice] = "La commande a bien été enregistrée."
        redirect_to business_institute_path(@service.institute)
       else
        render :new
