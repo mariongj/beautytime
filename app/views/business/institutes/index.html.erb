@@ -1,11 +1,9 @@
 <div class="title text-center">
-  <h1>MES INSTITUTS</h1>
+  <h1 class="title-shadowed margin-top-and-down">MES INSTITUTS</h1>
 </div>
 
 <div class="text-center">
-  <%= link_to "Ajouter un nouvel institut",
-            new_business_institute_path,
-            class: "btn btn-small btn-success text-center" %>
+  <%= link_to "Ajouter un nouvel institut", new_business_institute_path, class: "btn-black margin-down-less" %>
 </div>
 
 <% @institutes.each do |institute| %>
@@ -15,7 +13,7 @@
        <div class="institute-header" style="background-image: url('<%= institute.picture1 %>');"></div>
     <div class="institute-body">
       <%= link_to business_institute_path(institute) do %>
-         <h2><%= institute.name %></h2>
+         <h2 class="gold-hover-black"><%= institute.name %></h2>
       <% end %>
         <p class="description"><%= institute.description %></p>
         <p class="description"><%= institute.address %></p>
@@ -23,7 +21,7 @@
           <%= institute.zipcode %>
           <%= institute.city %>
         </p>
-       <p> <%= institute.bookings.count %> <%= link_to "Réservations", business_institute_bookings_path(institute) %></p>
+       <div class="hover-gold"> <%= institute.bookings.count %> <%= link_to "Réservations", business_institute_bookings_path(institute), class:"hover-gold" %></div>
           <br>
 
 
