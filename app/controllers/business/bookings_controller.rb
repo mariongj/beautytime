@@ -44,7 +44,7 @@ module Business
       @booking.end_datetime = @booking.start_datetime + @service.duration.minutes
 
       if @booking.save
-       redirect_to business_institute_path(@service.institute)
+       redirect_to business_institute_bookings_path(@service.institute)
       else
        render :new
       end
