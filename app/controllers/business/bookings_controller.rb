@@ -5,7 +5,7 @@ module Business
 
     def index
       @institute = Institute.find(params[:institute_id])
-      @bookings = @institute.bookings
+      @bookings = @institute.bookings.order(start_datetime: :desc)
     end
 
     def show

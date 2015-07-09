@@ -9,7 +9,15 @@
     <div class="container">
       <div class="white-card row">
           <div class="col-xs-12 col-sm-4">
-            <h4 class="center-vertically"><%= booking.user.first_name %> <%= booking.user.last_name.upcase %></h4>
+              <% if booking.user %>
+                <h4 class="center-vertically">
+                  <%= booking.user.first_name %> <%= booking.user.last_name.upcase %>
+                </h4>
+              <% else %>
+                <p class="center-vertically">
+                  <%= booking.manual_email %> <i>(Rendez-vous manuel)</i>
+                </p>
+              <% end %>
           </div>
           <div class="col-xs-12 col-sm-4">
                 <p>Prestation: <%= booking.service.title %></p>
