@@ -40,6 +40,11 @@
   font-weight: normal;
   font-size: 10px;
   letter-spacing: 1.5px;
+
+  @media (max-width: 500px) {
+    padding: 0 10px;
+  }
+
   &:hover{
     color: white;
   }
