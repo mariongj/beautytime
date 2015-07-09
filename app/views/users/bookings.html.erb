@@ -40,10 +40,18 @@
         <% else %>
 
           <div class="optionnal-actions">
-          <%= link_to new_booking_review_path(booking), class:"link-color-hover" do %>
-           <i class="fa fa-star"></i> Laisser un commentaire
-          <% end %>
+            <%= link_to new_booking_review_path(booking), class:"link-color-hover" do %>
+             <i class="fa fa-star"></i> Laisser un commentaire
+            <% end %>
           </div>
+
+          <div class="optionnal-actions">
+            <%= link_to new_service_booking_path(booking.service, booking), class:"link-color-hover" do %>
+             <i class="fa fa-calendar"></i> Prendre rendez-vous
+            <% end %>
+          </div>
+
+
 
         <% end %>
 
