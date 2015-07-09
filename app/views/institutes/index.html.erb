@@ -14,6 +14,12 @@
           <div class="institute-header" style="background-image: url('<%= institute.picture1 %>');"></div>
           <div class="institute-body">
             <h2><%= link_to institute.name, institute_path(institute) %></h2>
+            <% average_stars(institute).times do %>
+              <i class="fa fa-star gold"></i>
+            <% end %>
+
+
+            <p><%= @reviews_average %></p>
             <p class="description"><%= institute.description %></p>
             <p><%= institute.address %> <%= institute.zipcode %> <%= institute.city %></p>
             <div class="footer">
