@@ -2,9 +2,11 @@
   background-image: image-url("banner.jpg");
   background-size: cover;
   padding: 5%;
+  position: relative;
+  z-index: 1;
   // height:100vh;
   text-align: center;
-  color: black;
+  color: white;
   // .banner-content {
     // position: relative;
     // top: 50%;
@@ -14,8 +16,24 @@
     font-size: 30px;
     font-family: Lora;
     margin:0px;
+    z-index: 2;
+  }
+  .filter-blue {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #280100;
+    opacity: 0.6;
+    z-index: 0;
+  }
+  &-content {
+    position: relative;
+    z-index: 2;
   }
 }
+
 
 .banner-institute {
   // background-image: image-url("banner.jpg");
@@ -82,3 +100,18 @@
 .margin-top-miness-50{
   margin-top:-50px;
 }
+
+.color-background{
+  background-color:#000000;
+  font-family: "Open Sans", "sans-serif";
+  outline:none;
+  &:hover{
+    background-color:#000000;
+    color: $gold;
+  }
+  &:focus{
+    outline:none;
+  }
+}
+
+

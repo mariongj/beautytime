@@ -1,0 +1,23 @@
+.twitter-typeahead {
+  position: relative;
+  background-color: white !important;
+  border-radius: 4px;
+}
+.tt-hint {
+  border-radius: 4px;
+  border: 1px solid $gray-lighter;
+}
+.tt-menu {
+  position: relative;
+  background-color: white !important;
+  padding: 5px;
+  padding-left: 10px;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 4px;
+  &:hover {
+    background-color: $gray-lighter !important;
+  }
+}
+

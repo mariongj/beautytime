@@ -7,6 +7,7 @@
 <% end %>
 
 <div class="banner">
+  <div class="filter-blue"></div>
   <div class="banner-content">
     <%= image_tag "logo_large.png", class: "padding-medium" %>
     <h1 class="padding-medium">Prenez vos rendez-vous beauté en ligne, 24h / 24h</h1>
@@ -14,12 +15,18 @@
       <div class="container">
         <div class="row">
           <%= form_tag(institutes_path, method: :get, class: "form-inline") do %>
-            <%= select_tag :category, options_for_select(@categories, @categories.first), prompt: "Votre soin beauté", class: "form-control" %>
-            <!-- <input type="text" data-provide='datepicker' placeholder= <%= Date.current %> class="form-control" > -->
-            <div id="city-picker">
-              <%= text_field_tag :city, nil, placeholder: "Ville", class: "form-control typeahead" %>
+            <div class="row">
+              <div class="col-xs-3 col-xs-offset-2">
+              <%= select_tag :category, options_for_select(@categories, @categories.first), prompt: "Votre soin beauté", class: "form-control form-control-full" %>
+              </div>
+              <div class="col-xs-3">
+                <%= text_field_tag :city, nil, placeholder: "Ville", class: "form-control form-control-full typeahead" %>
+              </div>
+              <div class="col-xs-2">
+                <%= submit_tag "RECHERCHER", class: "btn btn-primary color-background form-control-full" %>
+              </div>
             </div>
-            <%= submit_tag "RECHERCHER", class: "btn btn-black margin-top-25" %>
+            <!-- <input type="text" data-provide='datepicker' placeholder= <%= Date.current %> class="form-control" > -->
           <% end %>
 
           <%= form_tag(institutes_path, method: :get, id: "around-me-form", class: "form-inline") do %>

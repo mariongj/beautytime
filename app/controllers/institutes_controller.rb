@@ -15,7 +15,7 @@ class InstitutesController < ApplicationController
     if latitude && longitude
       @institutes = @institutes.near([latitude, longitude], 5, units: :km)
     elsif params[:city].present?
-      @institutes = @institutes.where(city: params[:city])
+      @institutes = @institutes.where("city LIKE '%#{params[:city].capitalize}%'")
     end
 
     @markers = Gmaps4rails.build_markers(@institutes) do |institute, marker|

@@ -37,6 +37,7 @@ class Institute < ActiveRecord::Base
 
   has_many :services
   has_many :reviews
+  has_many :bookings, through: :services
 
   validates :name, presence: true
 

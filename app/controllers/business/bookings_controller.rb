@@ -4,8 +4,8 @@ module Business
     before_action :find_booking, only: [:show, :edit, :update, :destroy]
 
     def index
-      @service = Service.find(params[:service_id])
-      @bookings= Booking.all
+      @institute = Institute.find(params[:institute_id])
+      @bookings = @institute.bookings
     end
 
     def show

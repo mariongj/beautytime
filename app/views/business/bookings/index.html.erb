@@ -1,0 +1,30 @@
+<h2 class="text-center title-shadowed">Réservations liées à l'institut: </h2>
+<h2 class="text-center title-shadowed"><%= @institute.name %></h2>
+
+
+<% if @bookings == [] %>
+    <p class="text-center margin-top-and-down"><%= "Vous n'avez pas encore de réservations. Faites de la pub!" %></p>
+<% else %>
+  <% @bookings.each do |booking| %>
+    <div class="container">
+      <div class="white-card row">
+          <div class="col-xs-12 col-sm-4">
+            <h4 class="center-vertically"><%= booking.user.first_name %> <%= booking.user.last_name.upcase %></h4>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+                <p>Prestation: <%= booking.service.title %></p>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <p>
+                <%= booking.start_datetime.strftime("le %d-%m-%Y à %H:%M") %>
+                (<%= booking.service.price %>€ - Durée: <%= booking.service.duration %>min)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end %>
+<%end %>
+
+
+
