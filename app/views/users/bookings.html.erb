@@ -13,6 +13,10 @@
    <div class="institute">
     <div class="institute-body">
       <h2 class="text-center"> <%=booking.service.title%></h2>
+         <div class ="text-center">
+          <%= link_to booking.service.institute.name,
+          institute_path(booking.service.institute), class:"gold-hover-black" %>
+        </div>
        <p class="description text-center"><%= booking.service.description %></p>
        <p class="description text-center"><%= booking.start_datetime.strftime("Le %d-%m-%Y à %H:%M") %></p>
        <p class="description text-center"><strong><%= booking.service.price.to_s + '€' %></strong></p>
@@ -43,11 +47,6 @@
 
         <% end %>
 
-         <div class ="text-center">
-          <%= link_to "Profil de l'institut",
-          institute_path,
-          class: "btn-black" %>
-        </div>
       </div>
      </div>
    </div>

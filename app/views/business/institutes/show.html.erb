@@ -1,76 +1,55 @@
 <% content_for :title do %>
   L'institut <%= @institute.name %>
 <% end %>
-<div class="banner-institute" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; height:600px; position:relative" %>'>
 
+<div class="banner-institute text-center" style='<%= "background:linear-gradient(rgba(0, 0, 0, 0.51), rgba(0, 0, 0, 0.51)), url(#{image_url @institute.picture1.url(:medium) }); background-size: cover;  background-position: center center; height:400px" %>'>
 
-
+  <div class="text-center institute-infos">
+    <h1><%= @institute.name %></h1>
+    <p><%= @institute.description %></p>
+    <p><%= @institute.address %></p>
+    <p><%= @institute.zipcode %>, <%= @institute.city %></p>
+    <p>
+      <% @reviews_average.times do %>
+        <i class="fa fa-star gold"></i>
+      <% end %>
+    </p>
+    <div>
+      <%= link_to "Editer", edit_business_institute_path(@institute), class: "fa fa-pencil" %>
+    </div>
+  </div>
 </div>
-
-
-
-
-<div class="text-center">
-  <h1><%= @institute.name %></h1>
-  <p><%= @institute.description %></p>
-  <p><%= @institute.address %></p>
-  <p><%= @institute.zipcode %>, <%= @institute.city %></p>
-</div>
-
-     <div class= "text-center">
-        <%= link_to "Ajouter une prestation",
-          new_business_institute_service_path(@institute),
-          class: "btn btn-large btn-success" %>
-      </div>
 
 <ul class="unstyled">
-  <br>
-    <% @services.each do |service|  %>
-      <li class='white-card-list'>
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
-              <h4><%= service.title %></h4>
-            </div>
-            <div class="col-xs-12 col-sm-3">
-              <div><%= service.price %>€ - <%= service.duration %>min</div>
-            </div>
-            <div class="col-xs-12 col-sm-3">
-                 <ul>
-                  <li class="list-inline">
-                     <%= link_to edit_business_institute_service_path(service.institute, service) do %>
-                       <i class="fa fa-pencil"></i> Modifier la prestation
-                       <% end %>
-                  </li>
-                  <li class="list-inline">
-                     <%= link_to business_institute_service_path(service.institute, service),
-                          method: :delete,
-                          data: { confirm: "Are you sure?" } do %>
-                          <i class="fa fa-trash"></i> Supprimer la prestation
-                        <% end %>
-                  </li>
-                </ul>
-                <ul>
-                  <li class="list-inline">
-                     <%= link_to new_business_service_booking_path(service) do %>
-                       <i class="fa fa-users"></i> Bloquer un rendez-vous
-                       <% end %>
-                  </li>
-                </ul>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <div>
-                <%= service.description %>
-              </div>
-            </div>
-          </div>
+  <% @services.each do |service|  %>
+    <div class="container">
+      <div class="white-card row">
+        <div class="col-xs-12 col-sm-4">
+          <h4 class="center-vertically"><%= service.title %></h4>
+          <%= link_to edit_business_institute_service_path(service.institute, service) do %>
+            <i class="fa fa-pencil"></i>
+          <% end %>
+          <%= link_to business_institute_service_path(service.institute, service),
+            method: :delete,
+            data: { confirm: "Are you sure?" } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
         </div>
-      </li>
-    <% end %>
+        <div class="col-xs-12 col-sm-4">
+          <p><%= service.price %>€ - <%= service.duration %>min</p>
+          <p><%= service.description %></p>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <%= link_to "Nouveau rendez-vous", new_business_service_booking_path(service), class: "btn btn-black" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </ul>
 
+<div class="text-center">
+  <%= link_to "Ajouter une prestation", new_business_institute_service_path(@institute), class: "btn btn-gold" %>
+</div>
 
 <div id="map" style="width: 100%; height: 200px;"></div>
  <% content_for(:after_js) do %>
@@ -298,6 +277,9 @@
 </script>
 <% end %>
 
+<div class="text-center">
+  <h1 class="title-shadowed">Commentaires</h1>
+</div>
 
 <ul class="unstyled unpadded">
   <br>
