@@ -121,7 +121,7 @@
 
                   <% if available %>
                     <a href="?date=<%= d.to_s %>&time=<%= h.to_s(:time)%>">
-                      <div class="calendar-cell cell-available">
+                      <div class="calendar-cell cell-available" data-toggle="tooltip" data-placement="top" title=" <%= d.strftime("%A")[0..2] %> <%= d.mday %>, <%= h.to_s(:time) %>">
                       </div>
                     </a>
                   <% end %>
