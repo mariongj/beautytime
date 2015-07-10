@@ -47,7 +47,9 @@
 
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="institute">
-          <div class="institute-header"><%= image_tag @institutes.first.picture1.url(:medium)%></div>
+          <div class="institute-header" style="background-image: url('<%= @institutes.first.picture1 %>');">
+          </div>
+
           <div class="institute-body">
             <h2 class="text-center"><%= @institutes.first.name %></h2>
             <p class="description text-center"><%= @institutes.first.description %></p>
@@ -69,7 +71,8 @@
 
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="institute">
-          <div class="institute-header"><%= image_tag @institutes.find(3).picture1.url(:medium)%></div>
+          <div class="institute-header" style="background-image: url('<%= @institutes.find(3).picture1 %>');">
+          </div>
           <div class="institute-body">
             <h2 class="text-center"><%= @institutes.find(3).name %></h2>
             <p class="description text-center"><%= @institutes.find(3).description %></p>
@@ -84,7 +87,8 @@
 
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="institute">
-          <div class="institute-header"><%= image_tag @institutes.find(8).picture1.url(:medium)%></div>
+          <div class="institute-header" style="background-image: url('<%= @institutes.find(8).picture1 %>');">
+          </div>
           <div class="institute-body">
             <h2 class="text-center"><%= @institutes.find(8).name %></h2>
             <p class="description text-center"><%= @institutes.find(8).description %></p>
@@ -98,7 +102,8 @@
 
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="institute">
-          <div class="institute-header"><%= image_tag @institutes.last.picture1.url(:medium)%></div>
+          <div class="institute-header" style="background-image: url('<%= @institutes.last.picture1 %>');">
+          </div>
           <div class="institute-body">
             <h2><%= @institutes.last.name %></h2>
               <p class="description text-center"><%= @institutes.last.description %></p>
