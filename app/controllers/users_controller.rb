@@ -18,7 +18,8 @@ class UsersController < ApplicationController
   end
 
   def bookings
-    @bookings = current_user.bookings.order(start_datetime: :desc)
+    @past_bookings = current_user.bookings.where("start_datetime < ?", DateTime.now).order(start_datetime: :desc)
+    @pending_bookings = current_user.bookings.where("start_datetime >= ?", DateTime.now).order(start_datetime: :desc)
   end
 
   def institutes
