@@ -5,33 +5,112 @@
 <% if @bookings == [] %>
     <p class="text-center margin-top-and-down"><%= "Vous n'avez pas encore de réservations. Faites de la pub!" %></p>
 <% else %>
-  <% @bookings.each do |booking| %>
-    <div class="container">
-      <div class="white-card row">
-          <div class="col-xs-12 col-sm-4">
-              <% if booking.user %>
-                <h4 class="center-vertically">
-                  <%= booking.user.first_name %> <%= booking.user.last_name.upcase %>
-                </h4>
-              <% else %>
-                <p class="center-vertically">
-                  <%= booking.manual_email %> <i>(Rendez-vous manuel)</i>
-                </p>
-              <% end %>
+  <div class="container" id="booking-view">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#pending" aria-controls="home" role="tab" data-toggle="tab">
+              Rendez-vous à venir
+            </a>
+          </li>
+          <li role="presentation">
+            <a href="#past" aria-controls="profile" role="tab" data-toggle="tab">
+              Rendez-vous passés
+            </a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="pending">
+            <% @pending_bookings.each do |booking| %>
+              <div class="booking-item">
+                <div class="row">
+                  <div class="col-xs-3">
+                    <p>
+                      <%= image_tag booking.user.picture.url(:medium), class:"rounded-resa" %>
+                    </p>
+                    <p>
+                      <%= booking.user.first_name %> <%= booking.user.last_name.upcase %>
+                    </p>
+                  </div>
+                  <div class="col-xs-9">
+                    <h3 class="booking-item-title">
+                      <%=booking.service.title%>
+                    </h3>
+                    <p>
+                      <%= booking.start_datetime.strftime("Le %d-%m-%Y à %H:%M") %>
+                    </p>
+                    <p>
+                      <span class="label label-primary bg-color-gold">
+                        <%= booking.service.price.to_s + '€' %>
+                      </span>
+                    </p>
+                    <ul class="list-inline">
+                      <li>
+                        <%= link_to edit_service_booking_path(booking.service, booking), class:"link-color-hover padding-right-no-left" do %>
+                          <i class="fa fa-pencil"></i>Modifier
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to service_booking_path(booking.service, booking), class:"link-color-hover padding-left-no-right",
+                          method: :delete,
+                          data: { confirm: "Are you sure?" } do %>
+                          <i class="fa fa-trash"></i> Annuler
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
-          <div class="col-xs-12 col-sm-4">
-                <p>Prestation: <%= booking.service.title %></p>
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <p>
-                <%= booking.start_datetime.strftime("le %d-%m-%Y à %H:%M") %>
-                (<%= booking.service.price %>€ - Durée: <%= booking.service.duration %>min)
-            </p>
+          <div role="tabpanel" class="tab-pane" id="past">
+            <% @past_bookings.each do |booking| %>
+            <div class="booking-item">
+                <div class="row">
+                  <div class="col-xs-3">
+                    <p>
+                      <%= image_tag booking.user.picture.url(:medium), class:"rounded-resa" %>
+                    </p>
+                    <p>
+                      <%= booking.user.first_name %> <%= booking.user.last_name.upcase %>
+                    </p>
+                  </div>
+                  <div class="col-xs-9">
+                    <h3 class="booking-item-title">
+                      <%=booking.service.title%>
+                    </h3>
+                    <p>
+                      <%= booking.start_datetime.strftime("Le %d-%m-%Y à %H:%M") %>
+                    </p>
+                    <p>
+                      <span class="label label-primary bg-color-gold">
+                        <%= booking.service.price.to_s + '€' %>
+                      </span>
+                    </p>
+                    <ul class="list-inline">
+                      <li>
+                        <%= link_to new_booking_review_path(booking), class:"link-color-hover padding-right-no-left" do %>
+                          <i class="fa fa-star"></i> Laisser un commentaire
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to institute_service_path(booking.service.institute, booking.service), class:"link-color-hover padding-left-no-right" do %>
+                          <i class="fa fa-calendar"></i> Prendre rendez-vous
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
-  <%end %>
+  </div>
 <%end %>
 
 

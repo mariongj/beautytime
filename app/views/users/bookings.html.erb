@@ -71,7 +71,9 @@
                     <%= booking.start_datetime.strftime("Le %d-%m-%Y à %H:%M") %>
                   </p>
                   <p>
-                    <%= booking.service.price.to_s + '€' %>
+                    <span class="label label-primary bg-color-gold">
+                      <%= booking.service.price.to_s + '€' %>
+                    </span>
                   </p>
                   <ul class="list-inline">
                     <li>
