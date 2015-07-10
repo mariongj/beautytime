@@ -84,12 +84,21 @@
             <div class="booking-item">
                 <div class="row">
                   <div class="col-xs-3">
-                    <p>
-                      <%= image_tag booking.user.picture.url(:medium), class:"rounded-resa" %>
-                    </p>
-                    <p>
-                      <%= booking.user.first_name %> <%= booking.user.last_name.upcase %>
-                    </p>
+                    <% if booking.user %>
+                      <p>
+                        <%= image_tag booking.user.picture.url(:medium), class:"rounded-resa" %>
+                      </p>
+                      <p>
+                        <%= booking.user.first_name %> <%= booking.user.last_name.upcase %>
+                      </p>
+                    <% else %>
+                      <p>
+                        <%= booking.manual_email %>
+                      </p>
+                      <p>
+                        (Rdv manuel)
+                      </p>
+                    <% end %>
                   </div>
                   <div class="col-xs-9">
                     <h3 class="booking-item-title">
