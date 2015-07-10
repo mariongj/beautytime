@@ -112,7 +112,7 @@
                   <% end %>
 
                   <% @service.bookings.each do |b| %>
-                    <% if dh >= b.start_datetime && dh < b.end_datetime %>
+                    <% if dh >= b.start_datetime && dh < b.end_datetime && dh > Time.now %>
                       <% available = false %>
                       <div class="calendar-cell cell-booked">
                       </div>
