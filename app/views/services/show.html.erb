@@ -29,7 +29,7 @@
         <div class="row">
           <div class="col-xs-1">
             <%= link_to :search_date => @search_date - 1.week do %>
-              <i><<<</i>
+              <div class="chevrons"><<<</div>
             <% end %>
           </div>
           <% days.each do |d| %>
@@ -40,7 +40,7 @@
           <% end %>
           <div class="col-xs-1">
             <%= link_to :search_date => @search_date + 1.week do %>
-              <i>>>></i>
+              <div class="chevrons">>>></div>
             <% end %>
           </div>
         </div>
@@ -166,4 +166,4 @@
   </div>
 </div>
 
-<div class="text-center"><%= link_to "Retour", :back %></div>
+<div class="text-center"><%= link_to "Retour", :back, class:"btn-black" %></div>
