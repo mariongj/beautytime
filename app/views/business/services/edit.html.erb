@@ -1,3 +1,7 @@
+<%= content_for(:title) do %>
+  Modifier ma prestation
+<% end %>
+
 <div>
   <%= simple_form_for [:business, @institute, @service] do |f| %>
     <%= f.input :title %>
