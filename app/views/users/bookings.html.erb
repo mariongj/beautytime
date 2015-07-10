@@ -2,61 +2,97 @@
   Mes réservations
 <% end %>
 
-<div class="title text-center">
-  <h1 class="title-shadowed">MES RÉSERVATIONS</h1>
+<div class="container" id="booking-view">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#pending" aria-controls="home" role="tab" data-toggle="tab">
+            Pending bookings
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#past" aria-controls="profile" role="tab" data-toggle="tab">
+            Profile
+          </a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="pending">
+          <% @pending_bookings.each do |booking| %>
+            <div class="booking-item">
+              <div class="row">
+                <div class="col-xs-3">
+                  <h3 class="booking-item-title"><%=booking.service.title%></p>
+                </div>
+                <div class="col-xs-9">
+                  <h3>
+                    <%= link_to booking.service.institute.name, institute_path(booking.service.institute), class:"gold-hover-black" %>
+                  </h3>
+                  <p>
+                    <%= booking.start_datetime.strftime("Le %d-%m-%Y à %H:%M") %>
+                  </p>
+                  <p>
+                    <span class="label label-primary"><%= booking.service.price.to_s + '€' %></span>
+                  </p>
+                  <ul class="list-inline">
+                    <li>
+                      <%= link_to edit_service_booking_path(booking.service, booking), class:"link-color-hover padding-right-no-left" do %>
+                        <i class="fa fa-pencil"></i>Modifier
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to service_booking_path(booking.service, booking), class:"link-color-hover padding-left-no-right",
+                        method: :delete,
+                        data: { confirm: "Are you sure?" } do %>
+                        <i class="fa fa-trash"></i> Annuler
+                      <% end %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="past">
+          <% @past_bookings.each do |booking| %>
+            <div class="row">
+              <div class="col-xs-3">
+                <h3 class="booking-item-title"><%=booking.service.title%></h3>
+              </div>
+              <div class="col-xs-9">
+                <p>
+                  <%= link_to booking.service.institute.name, institute_path(booking.service.institute), class:"gold-hover-black" %>
+                </p>
+                <p>
+                  <%= booking.start_datetime.strftime("Le %d-%m-%Y à %H:%M") %>
+                </p>
+                <p>
+                  <%= booking.service.price.to_s + '€' %>
+                </p>
+                <ul class="list-inline">
+                  <li>
+                    <%= link_to new_booking_review_path(booking), class:"link-color-hover padding-right-no-left" do %>
+                      <i class="fa fa-star"></i> Laisser un commentaire
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to institute_service_path(booking.service.institute, booking.service), class:"link-color-hover padding-left-no-right" do %>
+                      <i class="fa fa-calendar"></i> Prendre rendez-vous
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<% @bookings.each do |booking| %>
 
-  <div class="col-xs-12 col-sm-6 col-md-3">
 
-   <div class="institute">
-    <div class="institute-body">
-      <h2 class="text-center"> <%=booking.service.title%></h2>
-         <div class ="text-center">
-          <%= link_to booking.service.institute.name,
-          institute_path(booking.service.institute), class:"gold-hover-black" %>
-        </div>
-       <p class="description text-center"><%= booking.service.description %></p>
-       <p class="description text-center"><%= booking.start_datetime.strftime("Le %d-%m-%Y à %H:%M") %></p>
-       <p class="description text-center"><strong><%= booking.service.price.to_s + '€' %></strong></p>
-
-        <% if booking.start_datetime >= DateTime.now %>
-
-          <div class="optionnal-actions">
-          <%= link_to edit_service_booking_path(booking.service, booking), class:"link-color-hover" do %>
-           <i class="fa fa-pencil"></i>Éditer
-          <% end %>
-          </div>
-
-          <div class="optionnal-actions">
-          <%= link_to service_booking_path(booking.service, booking), class:"link-color-hover",
-              method: :delete,
-              data: { confirm: "Are you sure?" } do %>
-            <i class="fa fa-trash"></i> Supprimer
-          <% end %>
-          </div>
-
-        <% else %>
-
-          <div class="optionnal-actions">
-            <%= link_to new_booking_review_path(booking), class:"link-color-hover" do %>
-             <i class="fa fa-star"></i> Laisser un commentaire
-            <% end %>
-          </div>
-
-          <div class="optionnal-actions">
-            <%= link_to institute_service_path(booking.service.institute, booking.service), class:"link-color-hover" do %>
-             <i class="fa fa-calendar"></i> Prendre rendez-vous
-            <% end %>
-          </div>
-
-        <% end %>
-
-      </div>
-     </div>
-   </div>
-  </div>
-
-<%end%>
 

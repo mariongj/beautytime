@@ -5,3 +5,43 @@
 .padding-left-no-right{
   padding-left: 15px;
 }
+#booking-view {
+  margin-top: 20px;
+}
+
+.booking-item {
+  background: white;
+  border-bottom: 1px solid $gray-lighter;
+  padding: 10px;
+  cursor: pointer;
+
+  h3, h3 > a {
+    font-size: 17px;
+    margin-top: 5px;
+  }
+  ul.list-inline {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    a {
+      color: rgb(197, 190, 190);
+      i {
+        padding-right: 3px;
+      }
+    }
+  }
+  &-title {
+    font-weight: 700;
+  }
+  &:first-child {
+    margin-top: 15px;
+    border-radius: 5px 5px 0 0;
+  }
+  &:last-child {
+    margin-bottom: 15px;
+    border-radius: 0px 0px 5px 5px;
+  }
+  &:hover {
+    background: #F2F2F2;
+  }
+}
