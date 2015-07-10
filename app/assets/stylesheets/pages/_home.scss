@@ -104,13 +104,23 @@
 .color-background{
   background-color:#000000;
   font-family: "Open Sans", "sans-serif";
-  outline:none;
+  border-color: black;
+
   &:hover{
     background-color:#000000;
+    border-color: black;
     color: $gold;
   }
   &:focus{
-    outline:none;
+    outline: 0;
+    background: black;
+    border-color: black;
+  }
+
+  &:active {
+    outline: 0 !important;
+    background: black !important;
+    border-color: black !important;
   }
 }
 

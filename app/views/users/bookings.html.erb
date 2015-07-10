@@ -46,7 +46,7 @@
           </div>
 
           <div class="optionnal-actions">
-            <%= link_to new_service_booking_path(booking.service, booking), class:"link-color-hover" do %>
+            <%= link_to institute_service_path(booking.service.institute, booking.service), class:"link-color-hover" do %>
              <i class="fa fa-calendar"></i> Prendre rendez-vous
             <% end %>
           </div>
@@ -59,5 +59,4 @@
   </div>
 
 <%end%>
-
 
