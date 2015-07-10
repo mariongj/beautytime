@@ -6,6 +6,8 @@ module Business
     def index
       @institute = Institute.find(params[:institute_id])
       @bookings = @institute.bookings.order(start_datetime: :desc)
+      @past_bookings = @institute.bookings.where("start_datetime < ?", DateTime.now).order(start_datetime: :desc)
+      @pending_bookings = @institute.bookings.where("start_datetime >= ?", DateTime.now).order(start_datetime: :desc)
     end
 
     def show
