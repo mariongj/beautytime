@@ -8,12 +8,12 @@
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
           <a href="#pending" aria-controls="home" role="tab" data-toggle="tab">
-            Pending bookings
+            Rendez-vous à venir
           </a>
         </li>
         <li role="presentation">
           <a href="#past" aria-controls="profile" role="tab" data-toggle="tab">
-            Profile
+            Rendez-vous passés
           </a>
         </li>
       </ul>
@@ -25,7 +25,7 @@
             <div class="booking-item">
               <div class="row">
                 <div class="col-xs-3">
-                  <h3 class="booking-item-title"><%=booking.service.title%></p>
+                  <h3 class="booking-item-title"><%=booking.service.title%></h3>
                 </div>
                 <div class="col-xs-9">
                   <h3>
@@ -35,7 +35,7 @@
                     <%= booking.start_datetime.strftime("Le %d-%m-%Y à %H:%M") %>
                   </p>
                   <p>
-                    <span class="label label-primary"><%= booking.service.price.to_s + '€' %></span>
+                    <span class="label label-primary bg-color-gold"><%= booking.service.price.to_s + '€' %></span>
                   </p>
                   <ul class="list-inline">
                     <li>
@@ -58,32 +58,34 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="past">
           <% @past_bookings.each do |booking| %>
-            <div class="row">
-              <div class="col-xs-3">
-                <h3 class="booking-item-title"><%=booking.service.title%></h3>
-              </div>
-              <div class="col-xs-9">
-                <p>
-                  <%= link_to booking.service.institute.name, institute_path(booking.service.institute), class:"gold-hover-black" %>
-                </p>
-                <p>
-                  <%= booking.start_datetime.strftime("Le %d-%m-%Y à %H:%M") %>
-                </p>
-                <p>
-                  <%= booking.service.price.to_s + '€' %>
-                </p>
-                <ul class="list-inline">
-                  <li>
-                    <%= link_to new_booking_review_path(booking), class:"link-color-hover padding-right-no-left" do %>
-                      <i class="fa fa-star"></i> Laisser un commentaire
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to institute_service_path(booking.service.institute, booking.service), class:"link-color-hover padding-left-no-right" do %>
-                      <i class="fa fa-calendar"></i> Prendre rendez-vous
-                    <% end %>
-                  </li>
-                </ul>
+          <div class="booking-item">
+              <div class="row">
+                <div class="col-xs-3">
+                  <h3 class="booking-item-title"><%=booking.service.title%></h3>
+                </div>
+                <div class="col-xs-9">
+                  <p>
+                    <%= link_to booking.service.institute.name, institute_path(booking.service.institute), class:"gold-hover-black" %>
+                  </p>
+                  <p>
+                    <%= booking.start_datetime.strftime("Le %d-%m-%Y à %H:%M") %>
+                  </p>
+                  <p>
+                    <%= booking.service.price.to_s + '€' %>
+                  </p>
+                  <ul class="list-inline">
+                    <li>
+                      <%= link_to new_booking_review_path(booking), class:"link-color-hover padding-right-no-left" do %>
+                        <i class="fa fa-star"></i> Laisser un commentaire
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to institute_service_path(booking.service.institute, booking.service), class:"link-color-hover padding-left-no-right" do %>
+                        <i class="fa fa-calendar"></i> Prendre rendez-vous
+                      <% end %>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           <% end %>
