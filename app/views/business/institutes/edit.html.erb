@@ -1,3 +1,7 @@
+<%= content_for(:title) do %>
+  Modifier mon institut
+<% end %>
+
  <div>
   <%= simple_form_for [:business, @institute], html: { multipart: true } do |f| %>
     <%= f.input :name %>

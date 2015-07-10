@@ -24,4 +24,13 @@ class ApplicationController < ActionController::Base
     flash[:error] = I18n.t('controllers.application.user_not_authorized', default: "You can't access this page.")
     redirect_to(root_path)
   end
+
+  def default_url_options
+    if Rails.env.production?
+      { host: 'beautytime.herokuapp.com' }
+    else
+      { host: ENV['HOST'] || 'localhost:3000' }
+    end
+  end
+
 end
